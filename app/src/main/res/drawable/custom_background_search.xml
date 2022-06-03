@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:bottom="250dp">
+
+        <shape  xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <solid android:color="@color/cardviewwhite"/>
+            <corners android:bottomRightRadius="50dp"
+                android:bottomLeftRadius="50dp"/>
+
+
+        </shape>
+    </item>
+</layer-list>

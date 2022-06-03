@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialogsheet"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/label_unlock_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unlock the number"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/buttoncolor"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/img_first_point"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/check"
+            app:tint="@color/roundedtextviewcolor"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_unlock_number"/>
+
+        <TextView
+            android:id="@+id/label_first_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum dolor sit "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/img_first_point"
+            app:layout_constraintTop_toBottomOf="@id/label_unlock_number"/>
+
+        <TextView
+            android:id="@+id/tv_first_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed , consectetur  "
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="@id/label_first_point"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_first_point"/>
+
+        <ImageView
+            android:id="@+id/img_second_point"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/check"
+            app:tint="@color/roundedtextviewcolor"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_first_point"/>
+
+
+        <TextView
+            android:id="@+id/label_second_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum dolor sit "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/img_second_point"
+            app:layout_constraintTop_toBottomOf="@id/tv_first_point"/>
+
+        <TextView
+            android:id="@+id/tv_second_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed , consectetur  "
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintStart_toStartOf="@id/label_second_point"
+            app:layout_constraintTop_toBottomOf="@id/label_second_point"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/img_third_point"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/check"
+            app:tint="@color/roundedtextviewcolor"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_second_point"/>
+
+
+        <TextView
+            android:id="@+id/label_third_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum dolor sit "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/img_third_point"
+            app:layout_constraintTop_toBottomOf="@id/tv_second_point"/>
+
+        <TextView
+            android:id="@+id/tv_third_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed , consectetur    "
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintStart_toStartOf="@id/label_third_point"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_third_point"/>
+
+        <Button
+            android:id="@+id/btn_hire_client_search_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_margin="20dp"
+            android:background="@drawable/roundedbutton"
+            android:text="HIRE"
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_third_point" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+

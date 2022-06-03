@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable-v24/roundedbutton.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/aboutus.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/appinfo.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/arrow_down.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/arrow_right.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/cardview.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/check_circle.xml" value="0.1125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/custom_background_search.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/custom_background_sheet.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/dialogsheet.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/downarrow.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/mail.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/menu.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/profile.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedbutton.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedimageslider.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedittext.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedittextprofile.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedittextsearchclienthire.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedprofiletextview.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/roundedprofiletextviewdeselect.xml" value="0.1685185185185185" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/simpleroundedbutton.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/slidebackgrounds.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/star.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_client_hire_search_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_client_profile_completion.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_client_profile_setup.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_client_profile_setup2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_client_search_hire.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_completion_profile_partner.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_consumer_profile_setup.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_first_slide.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_home.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_home_page_client.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_intro_slider.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_login_otpactivity.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_otpactivity.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_partner_profile_setup.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_partner_profile_setup2.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_partner_profile_setup3.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_profile_page_partner.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_registration_completion.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_registration_type.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/bottom_sheet.xml" value="0.292259083728278" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/custom_recyclerview_category_text.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/custom_recyclerview_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/custom_recyclerview_search_client.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/custom_recyclerview_skill_categories.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/firstslide.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/fragment_menu_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/fragment_profile_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/searchalertdialog.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/secondslide.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/slide_in.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/sliderimagelayout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/layout/thirdslide.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/xml/file_paths.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/drawable/arrow_up.xml" value="0.2203125" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/drawable/done_verify.xml" value="0.2203125" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/drawable/downarrow.xml" value="0.1125" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/drawable/slidebackgrounds.xml" value="0.2203125" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_client_profile_setup.xml" value="0.22" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_client_profile_setup2.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_intro_slider.xml" value="0.2" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_otpactivity.xml" value="0.33" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_partner_profile_setup.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_partner_profile_setup2.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_partner_profile_setup3.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_registration_completion.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_registration_type.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/bottom_sheet.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/custom_recyclerview_search_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/custom_recyclerview_skill_categories.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/firstslide.xml" value="0.25" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/fragment_menu_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/fragment_profile_client.xml" value="0.25" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/secondslide.xml" value="0.25" />
+        <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/thirdslide.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_completion_profile_partner.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_home_page_client.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_profile_page_partner.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_registration_type.xml" value="0.27783452502553624" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="corretto-1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

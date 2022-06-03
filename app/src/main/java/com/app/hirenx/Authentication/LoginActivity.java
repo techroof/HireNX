@@ -1,0 +1,200 @@
+package com.app.hirenx.Authentication;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.app.hirenx.ConsumerProfile.HomePageClientActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.hbb20.CountryCodePicker;
+import com.app.hirenx.R;
+
+import java.util.concurrent.TimeUnit;
+
+public class LoginActivity extends AppCompatActivity {
+
+    private CountryCodePicker countryCodePicker;
+    private String selectedCountryCode;
+    private TextView tvPhoneDesc;
+    private Button btnMoveToSignUp;
+    private String login;
+    private FirebaseAuth mAuth;
+    private String phNumber, verificationId;
+    private TextInputLayout edtNumberLogin;
+    private Button btnOTP, btnSignUp;
+    private ProgressDialog pd;
+    private ImageView imgBack;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        imgBack = findViewById(R.id.img_move_towards_registration_type);
+
+        pd = new ProgressDialog(LoginActivity.this);
+        pd.setCanceledOnTouchOutside(false);
+        pd.setMessage("Sending OTP...");
+
+        login = "login";
+
+        mAuth = FirebaseAuth.getInstance();
+        countryCodePicker = findViewById(R.id.country_code_spinner);
+        tvPhoneDesc = findViewById(R.id.label_desc);
+        btnOTP = findViewById(R.id.btn_request_otp);
+        edtNumberLogin = findViewById(R.id.edt_phone_number_login);
+        btnMoveToSignUp = findViewById(R.id.btn_request_otp);
+        btnSignUp = findViewById(R.id.btn_move_towards_signup);
+
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent moveToRegister = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
+                startActivity(moveToRegister);
+            }
+        });
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent moveToRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(moveToRegister);
+            }
+        });
+        btnMoveToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent moveToRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(moveToRegister);
+            }
+        });
+
+        countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+
+                selectedCountryCode = countryCodePicker.getSelectedCountryCodeWithPlus();
+
+                tvPhoneDesc.setText("Enter phone number without adding " + selectedCountryCode);
+            }
+        });
+
+
+        btnOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pd.show();
+
+                phNumber = selectedCountryCode + edtNumberLogin.getEditText().getText().toString();
+
+                //final FirebaseUser user = task.getResult().getUser();
+
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final DocumentReference docRef = db.collection("users").document(phNumber);
+                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            //redirect to home page
+
+                            sendVerificationCode(phNumber);
+
+
+                        } else {
+
+                            pd.dismiss();
+
+                            Toast.makeText(getApplicationContext(), "Please Register Your Account First!", Toast.LENGTH_SHORT).show();
+                            //redirect to sign up page
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+            }
+        });
+    }
+
+    //otp generator
+    private void sendVerificationCode(String number) {
+        // this method is used for getting
+        // OTP on user phone number.
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(number)            // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallBack)           // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    // callback method is called on Phone auth provider.
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+
+            // initializing our callbacks for on
+            // verification callback method.
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        // below method is used when
+        // OTP is sent from Firebase
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+            // when we receive the OTP it
+            // contains a unique id which
+            // we are storing in our string
+            // which we have already created.
+            pd.dismiss();
+
+            mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
+            verificationId = s;
+            Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
+            intent.putExtra("phoneNumber", phNumber);
+            intent.putExtra("verificationId", verificationId);
+            intent.putExtra("authentication", login);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+
+            pd.dismiss();
+            Toast.makeText(getApplicationContext(), "Sorry Code Has Not Been Sent!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+}
