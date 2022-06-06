@@ -185,8 +185,8 @@ public class OTPActivity extends AppCompatActivity {
                                                     Intent movetoHomeActivity = new Intent(getApplicationContext(), HomePageClientActivity.class);
 
                                                     startActivity(movetoHomeActivity);
-
                                                     Toast.makeText(OTPActivity.this, "Successfully logged in", Toast.LENGTH_LONG).show();
+                                                    finish();
 
                                                 }else{
 
@@ -194,8 +194,8 @@ public class OTPActivity extends AppCompatActivity {
                                                     Intent movetoProfilePagePartner = new Intent(getApplicationContext(), ProfilePagePartnerActivity.class);
 
                                                     startActivity(movetoProfilePagePartner);
-
                                                     Toast.makeText(OTPActivity.this, "Successfully logged in", Toast.LENGTH_LONG).show();
+                                                    finish();
 
                                                 }
 
@@ -204,6 +204,7 @@ public class OTPActivity extends AppCompatActivity {
                                                 Intent movetoHomeActivity = new Intent(getApplicationContext(), RegisterActivity.class);
                                                 startActivity(movetoHomeActivity);
                                                 Toast.makeText(OTPActivity.this, "Please Register Yourself First", Toast.LENGTH_LONG).show();
+                                                finish();
 
                                                 //redirect to sign up page
                                             }
@@ -222,23 +223,28 @@ public class OTPActivity extends AppCompatActivity {
 
                             } else if (registrarType!=null&&registrarType.equals("consumer")) {
 
-                                Toast.makeText(OTPActivity.this, "Your account has been created", Toast.LENGTH_LONG).show();
+                                AddStatus(registrarType);
+
+                                Toast.makeText(getApplicationContext(), "woohoo"+registrarType, Toast.LENGTH_SHORT).show();
 
                                 Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
                                 movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
                                 startActivity(movetoCompletionActivity);
+                                finish();
 
                             } else if (registrarType!=null&&registrarType.equals("partner")) {
 
                                 AddStatus(registrarType);
 
+                                Toast.makeText(getApplicationContext(), "woohoo"+registrarType, Toast.LENGTH_SHORT).show();
 
                                 Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
                                 movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
                                 startActivity(movetoCompletionActivity);
 
+                                finish();
                             } else {
 
                                 AddStatus(registrarType);
@@ -248,7 +254,7 @@ public class OTPActivity extends AppCompatActivity {
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
                                 movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
                                 startActivity(movetoCompletionActivity);
-
+                                finish();
                             }
 
 
@@ -325,7 +331,7 @@ public class OTPActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(OTPActivity.this, "Your account has been created", Toast.LENGTH_LONG).show();
+                            Toast.makeText(OTPActivity.this, "Your Account Has Been Created", Toast.LENGTH_LONG).show();
 
                         }
 

@@ -40,7 +40,8 @@
         android:background="@drawable/roundedprofiletextview"
         android:gravity="center"
         android:text="1"
-        android:layout_margin="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="85dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,22 +81,21 @@
         app:layout_constraintBottom_toBottomOf="@id/label_step_3"
         app:layout_constraintStart_toEndOf="@id/label_step_2"
         app:layout_constraintEnd_toStartOf="@id/label_step_3"
-        app:layout_constraintTop_toBottomOf="@id/img_move_towards_registration" />
+        app:layout_constraintTop_toBottomOf="@id/img_move_towards_registration"/>
 
     <TextView
         android:id="@+id/label_step_3"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:background="@drawable/roundedprofiletextviewdeselect"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="85dp"
         android:gravity="center"
         android:text="3"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_margin="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_move_towards_registration" />
-
-
 
     <ScrollView
             android:layout_width="match_parent"

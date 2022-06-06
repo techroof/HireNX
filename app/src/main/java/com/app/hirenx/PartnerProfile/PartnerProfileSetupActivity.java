@@ -57,6 +57,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
     private String[] genderList,maritalStatusList,documentTypeList;
     final Calendar myCalendar = Calendar.getInstance();
     private ProgressDialog pd;
+    private FirebaseUser user;
     private String registerType,phoneNumber,uId,id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +68,28 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         genderList = getResources().getStringArray(R.array.gender);
         maritalStatusList = getResources().getStringArray(R.array.maritalstatus);
         documentTypeList = getResources().getStringArray(R.array.documentType);
-
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         pd = new ProgressDialog(PartnerProfileSetupActivity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Please wait...");
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
 
+        if (extras != null) {
 
             registerType= extras.getString("registerType");
 
             phoneNumber=extras.getString("phoneNumber");
 
+        }else{
+
+            phoneNumber= user.getPhoneNumber();
+
         }
 
         //firestore initialization
         firestore=FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
 
         uId=mAuth.getCurrentUser().getUid();
         //calender date
@@ -184,7 +189,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                 new DatePickerDialog(PartnerProfileSetupActivity.this,R.style.DialogTheme, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-
             }
         });
 
@@ -211,9 +215,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                                     state = statesnameList.get(selectedPosition);
 
                                     stateId= statesList.get(selectedPosition).getIso2();
-
-
-
 
                                     getCities(101,stateId);
 
@@ -270,7 +271,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pd.show();
 
                 fullName=etFullName.getText().toString();
                 email=etEmail.getText().toString();
@@ -362,8 +362,9 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(etMaritalStatus.getText().toString())
                         && !TextUtils.isEmpty(etDocumentType.getText().toString())) {
 
+                        pd.show();
 
-                    AddUser(fullName,email, documentIDNumber,address, landMark, pinCode, city, state,address2, gender, dob, maritalStatus,documentType,registerType,phoneNumber);
+                    AddUser(fullName,email, documentIDNumber,address, landMark, pinCode, city, state,address2, gender, dob, maritalStatus,documentType,phoneNumber);
 
                 }
 
@@ -383,9 +384,9 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
     }
 
-    private void AddUser(String fullName,String email,String documentIDNumber,String address, String landMark,String pinCode,String city, String state,String address2, String gender,String dateofbirth,String maritalStatus,String documentType ,String UserType,String phoneNumber){
+    private void AddUser(String fullName,String email,String documentIDNumber,String address, String landMark,String pinCode,String city, String state,String address2, String gender,String dateofbirth,String maritalStatus,String documentType,String phoneNumber){
 
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        //FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
         id=user.getUid();
 
@@ -403,7 +404,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         userProfileMap.put("dateofbirth", dateofbirth);
         userProfileMap.put("maritalStatus", maritalStatus);
         userProfileMap.put("documentType", documentType);
-        userProfileMap.put("userType", UserType);
         userProfileMap.put("phoneNumber",phoneNumber);
         userProfileMap.put("stepStatus","1");
         userProfileMap.put("id",id);

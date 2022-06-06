@@ -87,6 +87,7 @@ public class HomePageClientActivity extends AppCompatActivity {
             Intent login = new Intent(HomePageClientActivity.this, RegistrationTypeActivity.class);
 
             startActivity(login);
+
             finish();
 
         } else {
@@ -94,7 +95,7 @@ public class HomePageClientActivity extends AppCompatActivity {
             user = FirebaseAuth.getInstance().getCurrentUser();
             uId = user.getPhoneNumber();
 
-            //GetUserStatus();
+            GetUserStatus();
 
         }
         pager.beginFakeDrag();
@@ -178,13 +179,13 @@ public class HomePageClientActivity extends AppCompatActivity {
                     userType = task.getResult().getString("userType");
                     status=task.getResult().getString("stepStatus");
 
-                     if (userType.equals("Consumer") && status == null) {
+                     if (userType.equals("consumer") && status == null) {
 
                         Intent moveToConsumer1 = new Intent(HomePageClientActivity.this, ClientProfileSetupActivity.class);
                         startActivity(moveToConsumer1);
                         Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
 
-                    } else if (userType.equals("Consumer") && status.equals("1")) {
+                    } else if (userType.equals("consumer") && status.equals("1")) {
 
                         Intent moveToConsumer2 = new Intent(HomePageClientActivity.this, ClientProfileSetup2Activity.class);
                         startActivity(moveToConsumer2);

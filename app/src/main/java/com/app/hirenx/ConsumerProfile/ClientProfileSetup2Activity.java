@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,6 +48,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
     private CardView crdtakePhoto, crdFileFront, crdFileBack;
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private Button btnProceedstep3;
     private String uid;
     private ProgressDialog pd;
@@ -63,19 +65,25 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_profile_setup2);
-
+        firestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
             phoneNumber=extras.getString("phoneNumber");
 
+        }else{
+
+            phoneNumber=user.getPhoneNumber();
         }
+
+
         pd = new ProgressDialog(ClientProfileSetup2Activity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Uploading image...");
 
-        firestore = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
+
         uid = mAuth.getCurrentUser().getUid();
 
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -84,7 +92,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
         crdFileFront = findViewById(R.id.crdview_upload_client_document_front);
         crdFileBack = findViewById(R.id.crdview_upload_client_document_back);
 
-        imgCameraSelfieClient=findViewById(R.id.img_document_front_client);
+        imgCameraSelfieClient=findViewById(R.id.img_take_selfie_client);
         imgPdfBackClient=findViewById(R.id.img_document_back_client);
         imgPdfFrontClient=findViewById(R.id.img_document_front_client);
 
@@ -211,7 +219,6 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        Toast.makeText(getApplicationContext(), "" + uri.toString(), Toast.LENGTH_SHORT).show();
                         AddImgUrl(uri.toString());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -300,9 +307,10 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             checkImageupload = "checked";
 
+                            imgCameraSelfieClient.setColorFilter(R.color.donecolor);
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgCameraSelfieClient.setImageDrawable(imgDrawable);
-                            imgCameraSelfieClient.setColorFilter(R.color.donecolor);
+
 
                         }
 

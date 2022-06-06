@@ -69,6 +69,7 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
 
         firestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
+
         GetUserStatus();
 
 

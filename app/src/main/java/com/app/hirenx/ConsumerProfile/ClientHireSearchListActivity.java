@@ -104,9 +104,8 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
             pd.show();
         }
 
-
         firestore.collection("users")
-                .whereEqualTo("city","Cherrapunji")
+                .whereEqualTo("city",city)
                 .whereArrayContainsAny("skills", Arrays.asList(skill))
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

@@ -33,11 +33,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--setup indicators-->
+
     <TextView
         android:id="@+id/label_step_1"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_margin="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="85dp"
         android:background="@drawable/roundedprofiletextview"
         android:gravity="center"
         android:text="1"
@@ -86,7 +88,8 @@
         android:id="@+id/label_step_3"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_margin="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="85dp"
         android:background="@drawable/roundedprofiletextviewdeselect"
         android:gravity="center"
         android:text="3"
@@ -110,35 +113,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_step_1">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/camera_selfie"
-            app:tint="@color/black" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="18dp"
-            android:text="Take a selfie"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/camera_selfie"
+                app:tint="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
 
-        <ImageView
-            android:id="@+id/img_take_selfie_partner"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="270dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/arrow_right"
-            app:tint="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Take a selfie"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img"/>
+
+
+            <ImageView
+                android:id="@+id/img_take_selfie_partner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow_right"
+                app:tint="@color/black"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -157,34 +175,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crdView_take_a_selfie">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/file"
-            app:tint="@color/black" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_ic_second_document_front_partner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/file"
+                app:tint="@color/black"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="18dp"
-            android:text="Upload Document (Front)"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Document (Front)"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_ic_second_document_front_partner"/>
 
 
-        <ImageView
-            android:id="@+id/img_document_front_partner"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="270dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/arrow_right"
-            app:tint="@color/black" />
+            <ImageView
+                android:id="@+id/img_document_front_partner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow_right"
+                app:tint="@color/black"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -203,35 +235,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crdview_upload_document_front">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/file"
-            app:tint="@color/black" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_ic_third_document_back_patner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/file"
+                app:tint="@color/black"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="18dp"
-            android:text="Upload Document (Back)"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Document (Back)"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_ic_third_document_back_patner"/>
 
 
-        <ImageView
-            android:id="@+id/img_document_back_partner"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="270dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/arrow_right"
-            app:tint="@color/black" />
+            <ImageView
+                android:id="@+id/img_document_back_partner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow_right"
+                app:tint="@color/black"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

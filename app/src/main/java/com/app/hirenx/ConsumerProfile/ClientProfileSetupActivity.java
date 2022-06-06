@@ -48,6 +48,7 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
     private String BASE_URL = "https://api.countrystatecity.in/v1/";
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private List<String> statesnameList;
     private List<States> statesList;
     private List<String> countryNameList;
@@ -69,6 +70,9 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
         maritalStatusList = getResources().getStringArray(R.array.maritalstatus);
         documentTypeList = getResources().getStringArray(R.array.documentType);
 
+        firestore=FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         pd = new ProgressDialog(ClientProfileSetupActivity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Please wait...");
@@ -79,11 +83,14 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
             registerType= extras.getString("registerType");
             phoneNumber=extras.getString("phoneNumber");
 
+        }else{
+
+            phoneNumber=user.getPhoneNumber();
+
         }
 
         //firestore initialization
-        firestore=FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
+
 
         uId=mAuth.getCurrentUser().getUid();
         //calender date
@@ -358,7 +365,7 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(etDocumentType.getText().toString())) {
 
 
-                    AddUser(fullName,email, documentIDNumber,address, landMark, pinCode, city, state,address2, gender, dob, maritalStatus,documentType,registerType,phoneNumber);
+                    AddUser(fullName,email, documentIDNumber,address, landMark, pinCode, city, state,address2, gender, dob, maritalStatus,documentType,phoneNumber);
 
                 }
 
@@ -376,9 +383,9 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
 
     }
 
-    private void AddUser(String fullName,String email,String documentIDNumber,String address, String landMark,String pinCode,String city, String state,String address2, String gender,String dateofbirth,String maritalStatus,String documentType ,String UserType,String phoneNumber){
+    private void AddUser(String fullName,String email,String documentIDNumber,String address, String landMark,String pinCode,String city, String state,String address2, String gender,String dateofbirth,String maritalStatus,String documentType,String phoneNumber){
 
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        //FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
         id=user.getUid();
 
@@ -396,7 +403,6 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
         userProfileMap.put("dateofbirth", dateofbirth);
         userProfileMap.put("maritalStatus", maritalStatus);
         userProfileMap.put("documentType", documentType);
-        userProfileMap.put("userType", UserType);
         userProfileMap.put("phoneNumber",phoneNumber);
         userProfileMap.put("stepStatus","1");
         userProfileMap.put("id",id);
@@ -405,7 +411,7 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
 
         firestore.collection("users")
                 .document(phoneNumber)
-                .set(userProfileMap)
+                .update(userProfileMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
