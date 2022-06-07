@@ -90,7 +90,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                             new SkillsRecyclerViewAdapter(context.getApplicationContext(), skillsArrayList);
                     //holder.rvView.setLayoutManager(new GridLayoutManager(context,2,LinearLayoutManager.VERTICAL,false));
                     holder.rvView.setLayoutManager(new StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL));
-
+                    holder.rvView.setNestedScrollingEnabled(false);
                     holder.rvView.setAdapter(sKillsViewHolder);
 
 

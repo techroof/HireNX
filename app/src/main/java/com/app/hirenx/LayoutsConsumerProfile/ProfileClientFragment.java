@@ -106,7 +106,6 @@ public class ProfileClientFragment extends Fragment {
         tvPinCode=view.findViewById(R.id.tv_client_pincode);
         partnerImage = view.findViewById(R.id.img_client_partner_profile);
 
-
         partnerImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +113,7 @@ public class ProfileClientFragment extends Fragment {
                 getimagefromgallery();
             }
         });
+
         GetPartnerProfile();
 
 

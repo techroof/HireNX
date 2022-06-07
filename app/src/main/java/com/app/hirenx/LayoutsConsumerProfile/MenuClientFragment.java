@@ -1,6 +1,7 @@
 package com.app.hirenx.LayoutsConsumerProfile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.app.hirenx.Adapters.MenuAdapter;
+import com.app.hirenx.Authentication.RegistrationTypeActivity;
 import com.app.hirenx.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -68,6 +70,8 @@ public class MenuClientFragment extends Fragment {
             public void onClick(View view) {
 
                 mAuth.signOut();
+                Intent moveToRegisterclient =new Intent(getContext(), RegistrationTypeActivity.class);
+                startActivity(moveToRegisterclient);
             }
         });
         return view;

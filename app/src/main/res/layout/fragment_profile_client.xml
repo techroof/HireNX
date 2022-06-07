@@ -26,9 +26,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/user"
+                android:src="@drawable/add"
                 app:civ_border_color="@color/headingtextviewcolor"
-
                 app:civ_border_width="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -365,8 +364,8 @@
 
             <TextView
                 android:id="@+id/tv_client_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="-"

@@ -236,7 +236,6 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void UploadPdfFile(Uri data) {
@@ -306,8 +305,6 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
                             pd.dismiss();
 
                             checkImageupload = "checked";
-
-                            imgCameraSelfieClient.setColorFilter(R.color.donecolor);
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgCameraSelfieClient.setImageDrawable(imgDrawable);
 
@@ -347,7 +344,6 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfFrontClient.setImageDrawable(imgDrawable);
-                            imgPdfFrontClient.setColorFilter(R.color.donecolor);
                         }
 
                     }
@@ -384,7 +380,6 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfBackClient.setImageDrawable(imgDrawable);
-                            imgPdfBackClient.setColorFilter(R.color.donecolor);
 
                         }
 

@@ -179,14 +179,13 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
                     //skillsArrayList.add(listData);
                     categoryTextsArrayList.add(listDataa);
 
-
                 }
-
 
                 recyclerViewAdapters = new CategoryRecyclerViewAdapter(categoryTextsArrayList,
                         getApplicationContext());
                 linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 skillsRv.setLayoutManager(linearLayoutManager);
+                skillsRv.setNestedScrollingEnabled(false);
                 skillsRv.setAdapter(recyclerViewAdapters);
 
 

@@ -419,8 +419,6 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             pd.dismiss();
-
-                            Toast.makeText(getApplicationContext(), ""+gender+documentType, Toast.LENGTH_SHORT).show();
                             Intent movetoPartnerSetup2=new Intent(ClientProfileSetupActivity.this, ClientProfileSetup2Activity.class);
                             movetoPartnerSetup2.putExtra("phoneNumber",phoneNumber);
                             startActivity(movetoPartnerSetup2);

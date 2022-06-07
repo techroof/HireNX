@@ -310,7 +310,6 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgCameraSelfiePartner.setImageDrawable(imgDrawable);
-                            imgCameraSelfiePartner.setColorFilter(R.color.donecolor);
                             Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
 
@@ -348,7 +347,6 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
                             checkPdfUploadFront = "checked";
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfFrontPartner.setImageDrawable(imgDrawable);
-                            imgPdfFrontPartner.setColorFilter(R.color.donecolor);
                             Toast.makeText(getApplicationContext(), "Front Id Pdf Uploaded", Toast.LENGTH_SHORT).show();
 
 
@@ -386,8 +384,6 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfBackPartner.setImageDrawable(imgDrawable);
-                            imgPdfBackPartner.setColorFilter(R.color.donecolor);
-
                             Toast.makeText(getApplicationContext(), "Back Id Pdf Uploaded", Toast.LENGTH_SHORT).show();
 
 
