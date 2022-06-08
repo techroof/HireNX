@@ -72,8 +72,6 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
 
         GetUserStatus();
 
-
-
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

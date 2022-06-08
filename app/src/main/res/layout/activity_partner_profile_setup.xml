@@ -131,8 +131,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
-                    android:textSize="14sp"
-                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:inputType="textCapWords"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
@@ -161,8 +161,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -170,9 +170,6 @@
                     android:background="@drawable/roundedittextprofile"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_email"/>
-
-
-
 
 
                 <TextView
@@ -196,8 +193,8 @@
                     android:hint="Gender"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -206,7 +203,6 @@
                     app:drawableTint="@color/drawableicon"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_gender"/>
-
 
                 <TextView
                     android:id="@+id/label_dob"
@@ -221,7 +217,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_gender"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-
                 <EditText
                     android:id="@+id/et_dob"
                     android:layout_width="match_parent"
@@ -229,8 +224,8 @@
                     android:hint="Date of birth"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -240,7 +235,6 @@
                     style="@style/DialogTheme"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_dob"/>
-
 
                 <TextView
                     android:id="@+id/label_marital_status"
@@ -255,7 +249,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_dob"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
-
                 <EditText
                     android:id="@+id/et_marital_status"
                     android:layout_width="match_parent"
@@ -263,8 +256,8 @@
                     android:hint="Marital Status"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -273,7 +266,6 @@
                     app:drawableTint="@color/drawableicon"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_marital_status"/>
-
 
                 <TextView
                     android:id="@+id/label_document_type"
@@ -295,8 +287,8 @@
                     android:hint="Document Type"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -305,7 +297,6 @@
                     app:drawableTint="@color/drawableicon"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_document_type"/>
-
 
                 <TextView
                     android:id="@+id/label_document_id_number"
@@ -325,8 +316,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Document ID Number"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -353,8 +344,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Address 1"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -381,8 +372,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Address 2"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -390,7 +381,6 @@
                     android:inputType="textCapWords"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_address2"/>
-
 
                 <TextView
                     android:id="@+id/label_landmark"
@@ -410,8 +400,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E.g. near unit-6 hospital"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -439,11 +429,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="6 digits [0-9] PIN code"
-                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
-                    android:textSize="14sp"
                     android:background="@drawable/roundedittextprofile"
                     android:inputType="number"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -469,8 +459,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="State"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="10dp"
@@ -505,8 +495,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="City"
-                    android:padding="8dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:padding="15dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="8dp"
@@ -529,6 +519,7 @@
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/roundedbutton"
                     android:text="PROCEED"
+                    android:textSize="12sp"
                     app:backgroundTint="@null"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -540,9 +531,4 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

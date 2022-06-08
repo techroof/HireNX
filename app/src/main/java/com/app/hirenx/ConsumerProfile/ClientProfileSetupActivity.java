@@ -66,6 +66,7 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_profile_setup);
+
         genderList = getResources().getStringArray(R.array.gender);
         maritalStatusList = getResources().getStringArray(R.array.maritalstatus);
         documentTypeList = getResources().getStringArray(R.array.documentType);

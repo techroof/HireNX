@@ -93,6 +93,7 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/roundedbutton"
         android:text="PROFILE"
+        android:textSize="12sp"
         app:backgroundTint="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"

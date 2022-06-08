@@ -56,7 +56,6 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_client_hire_search_list);
 
         firestore=FirebaseFirestore.getInstance();

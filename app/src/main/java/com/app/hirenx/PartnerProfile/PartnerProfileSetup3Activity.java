@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,10 +57,10 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
     private FirebaseFirestore firestore;
     private LinearLayoutManager linearLayoutManager;
     private RadioGroup rdButton;
-    private String driveStatus,phoneNumber;
+    private String driveStatus, phoneNumber;
     private Button submitBtn;
-    private CheckBox chkbxtwoWheeler,chkbxCar;
-    private ArrayList<String> arraylistCurrentVehicle=new ArrayList<>();
+    private CheckBox chkbxtwoWheeler, chkbxCar;
+    private ArrayList<String> arraylistCurrentVehicle = new ArrayList<>();
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private ProgressDialog pd;
@@ -68,61 +69,75 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner_profile_setup3);
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            phoneNumber=extras.getString("phoneNumber");
+            phoneNumber = extras.getString("phoneNumber");
 
-        }else{
+        } else {
 
-            phoneNumber=user.getPhoneNumber();
+            phoneNumber = user.getPhoneNumber();
         }
         pd = new ProgressDialog(PartnerProfileSetup3Activity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Submitting...");
 
-        addSkillsArrayList=new ArrayList<>();
+        addSkillsArrayList = new ArrayList<>();
         categoryTextsArrayList = new ArrayList<>();
 
-        rdButton=findViewById(R.id.radio_group);
+        rdButton = findViewById(R.id.radio_group);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-arraylist"));
+
         firestore = FirebaseFirestore.getInstance();
         skillsRv = findViewById(R.id.recyclerView_categories);
         submitBtn = findViewById(R.id.btn_partner_submit);
-        chkbxtwoWheeler=findViewById(R.id.checkbox_2_wheeler);
-        chkbxCar=findViewById(R.id.checkbox_2_car);
+        chkbxtwoWheeler = findViewById(R.id.checkbox_2_wheeler);
+        chkbxCar = findViewById(R.id.checkbox_2_car);
+
+        skillsRecyclerViewAdapter = new SkillsRecyclerViewAdapter();
+
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        skillsRv.setLayoutManager(linearLayoutManager);
+
+        //skillsRv.setNestedScrollingEnabled(true);
 
         getCategories();
-
-        skillsRecyclerViewAdapter=new SkillsRecyclerViewAdapter();
-
-
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                pd.show();
-
-
-                if(chkbxtwoWheeler.isChecked()){
+                if (chkbxtwoWheeler.isChecked()) {
 
                     arraylistCurrentVehicle.add("Two Wheeler");
 
 
                 }
-                if(chkbxCar.isChecked()){
+                if (chkbxCar.isChecked()) {
 
                     arraylistCurrentVehicle.add("Car");
 
                 }
 
+                if (!TextUtils.isEmpty(driveStatus)
+                        && !arraylistCurrentVehicle.isEmpty()
+                        && !skillsRecyclerViewAdapter.skillsNamesArrayList.isEmpty()) {
 
-                SubmitData(driveStatus,arraylistCurrentVehicle,skillsRecyclerViewAdapter.skillsNamesArrayList);
+
+                    SubmitData(driveStatus, arraylistCurrentVehicle, skillsRecyclerViewAdapter.skillsNamesArrayList);
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Select all above values", Toast.LENGTH_SHORT).show();
+
+                }
+
+
                 //Toast.makeText(getApplicationContext(), ""+skillsRecyclerViewAdapter.skillsNamesArrayList, Toast.LENGTH_SHORT).show();
             }
         });
@@ -143,14 +158,14 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
-                switch (i){
+                switch (i) {
 
                     case R.id.radiobutton_yes:
-                        driveStatus="yes";
+                        driveStatus = "yes";
                         break;
 
                     case R.id.radiobutton_no:
-                        driveStatus="no";
+                        driveStatus = "no";
 
                         break;
                 }
@@ -181,11 +196,9 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
 
                 }
 
+
                 recyclerViewAdapters = new CategoryRecyclerViewAdapter(categoryTextsArrayList,
                         getApplicationContext());
-                linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                skillsRv.setLayoutManager(linearLayoutManager);
-                skillsRv.setNestedScrollingEnabled(false);
                 skillsRv.setAdapter(recyclerViewAdapters);
 
 
@@ -206,7 +219,7 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
         }
     }
 
-    BroadcastReceiver mMessageReceiver =new BroadcastReceiver() {
+    BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             addSkillsArrayList = new ArrayList<String>();
@@ -216,13 +229,15 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
         }
     };
 
-    private void SubmitData(String driveStatus,ArrayList<String> currentVehicles,ArrayList<String> skills){
+    private void SubmitData(String driveStatus, ArrayList<String> currentVehicles, ArrayList<String> skills) {
+
+        pd.show();
 
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("drivingStatus", driveStatus);
         userProfileMap.put("currentVehicles", currentVehicles);
         userProfileMap.put("skills", skills);
-        userProfileMap.put("stepStatus","3");
+        userProfileMap.put("stepStatus", "3");
         //userProfileMap.put("skills", Arrays.asList("Hamburger", "Vegetables"));
 
         firestore.collection("users")
@@ -236,7 +251,7 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
 
                             pd.dismiss();
 
-                            Intent movetoPartnerCompletionSetup=new Intent(PartnerProfileSetup3Activity.this,CompletionProfilePartnerActivity.class);
+                            Intent movetoPartnerCompletionSetup = new Intent(PartnerProfileSetup3Activity.this, CompletionProfilePartnerActivity.class);
                             startActivity(movetoPartnerCompletionSetup);
                             overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                             Toast.makeText(getApplicationContext(), "Profile Setup Is Completed", Toast.LENGTH_SHORT).show();
@@ -248,7 +263,7 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
             @Override
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
-                Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -57,6 +57,7 @@ public class ClientSearchHireActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_search_hire);
+
         pd = new ProgressDialog(ClientSearchHireActivity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Please wait...");

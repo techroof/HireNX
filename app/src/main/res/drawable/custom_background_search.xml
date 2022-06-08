@@ -5,7 +5,7 @@
 
         <shape  xmlns:android="http://schemas.android.com/apk/res/android">
 
-            <solid android:color="@color/cardviewwhite"/>
+            <solid android:color="@color/lightPurpleColor"/>
             <corners android:bottomRightRadius="50dp"
                 android:bottomLeftRadius="50dp"/>
 

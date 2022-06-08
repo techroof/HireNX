@@ -69,6 +69,7 @@ public class HomePageClientActivity extends AppCompatActivity {
         tvMenu = findViewById(R.id.tv_client_menu);
         tvHome = findViewById(R.id.tv_client_home);
         tvHeading = findViewById(R.id.label_home);
+
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 

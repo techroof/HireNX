@@ -4,8 +4,8 @@
     <solid android:color="#FFFFFF" />
 
     <stroke
-        android:width="3dp"
-        android:color="@color/divider" />
+        android:width="2dp"
+        android:color="@color/editTextBorderColor" />
 
     <corners
         android:radius="5dp"

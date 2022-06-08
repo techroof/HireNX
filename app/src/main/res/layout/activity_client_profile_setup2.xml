@@ -75,7 +75,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/cardview"
         app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_step_1">
@@ -121,12 +121,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crdview_upload_client_document_front"
@@ -137,7 +133,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/cardview"
         app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crdView_take_client_a_selfie">
@@ -197,7 +193,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/cardview"
         app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crdview_upload_client_document_front">
@@ -218,7 +214,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -230,7 +225,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_ic_third_document_back_client"/>
-
 
             <ImageView
                 android:id="@+id/img_document_back_client"
@@ -257,10 +251,10 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/roundedbutton"
         android:text="PROCEED"
+        android:textSize="12sp"
         app:backgroundTint="@null"
         app:layout_constraintTop_toBottomOf="@id/crdview_upload_client_document_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

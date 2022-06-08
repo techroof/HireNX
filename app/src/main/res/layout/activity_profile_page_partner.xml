@@ -38,69 +38,74 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_profile"
-        >
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/label_profile">
     </androidx.viewpager.widget.ViewPager>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crdView_change"
-        android:layout_width="180dp"
+        android:layout_width="200dp"
         android:layout_height="65dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/cardview"
         app:cardCornerRadius="30dp"
-        app:cardElevation="5dp"
+        app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_profile"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="8dp"
             android:src="@drawable/user"
             android:layerType="software"
-            app:tint="@color/black" />
-
+            app:tint="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_profile"
+            app:layout_constraintEnd_toStartOf="@id/img_menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="38dp"
             android:text="Profile"
             android:textColor="@color/black"
-            android:textSize="14sp" />
-
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"
+            app:layout_constraintEnd_toStartOf="@id/tv_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <ImageView
             android:id="@+id/img_menu"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="125dp"
-            android:layout_marginTop="8dp"
             android:layerType="software"
             android:src="@drawable/menu_2"
-            app:tint="@color/black" />
-
+            app:tint="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_menu"
+            app:layout_constraintStart_toEndOf="@id/img_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="38dp"
             android:text="Menu"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"
+            app:layout_constraintStart_toEndOf="@id/tv_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

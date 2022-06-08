@@ -64,7 +64,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner_profile_setup);
 
-
         genderList = getResources().getStringArray(R.array.gender);
         maritalStatusList = getResources().getStringArray(R.array.maritalstatus);
         documentTypeList = getResources().getStringArray(R.array.documentType);

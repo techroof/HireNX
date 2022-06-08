@@ -15,11 +15,13 @@
     <color name="headingtextviewcolor">#6769FA</color>
     <color name="roundedtextviewcolor">#2DCC70</color>
     <color name="divider">#E6E7FE</color>
+    <color name="editTextBorderColor">#D1D5DC</color>
     <color name="drawableicon">#6B7280</color>
     <color name="statusbarcolor">#E6E7FE</color>
     <color name="cardviewcolor">#D1D5DB</color>
     <color name="grey">#C4C4C4</color>
     <color name="cardviewwhite">#E6E7FE</color>
+    <color name="lightPurpleColor">#F4F4FF</color>
     <color name="donecolor">#45FF17</color>
 
 </resources>

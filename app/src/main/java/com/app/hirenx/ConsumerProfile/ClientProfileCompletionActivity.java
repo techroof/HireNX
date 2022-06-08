@@ -19,6 +19,7 @@ public class ClientProfileCompletionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_profile_completion);
+
         imgClosePartnerSetup=findViewById(R.id.img_close_profile_setup);
         btnHire=findViewById(R.id.btn_hire);
 

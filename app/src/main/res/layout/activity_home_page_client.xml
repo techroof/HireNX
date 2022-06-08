@@ -26,7 +26,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_home"
-        app:swipeable="false">
+        >
 
 
     </androidx.viewpager.widget.ViewPager>
@@ -54,7 +54,6 @@
             android:layerType="software"
             app:tint="@color/black" />
 
-
         <TextView
             android:id="@+id/tv_client_home"
             android:layout_width="wrap_content"
@@ -64,8 +63,6 @@
             android:text="Home"
             android:textColor="@color/black"
             android:textSize="12sp" />
-
-
 
         <ImageView
             android:id="@+id/img_client_profile"

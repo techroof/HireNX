@@ -26,9 +26,10 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/add"
+                android:src="@drawable/ic_round_add_24"
+                app:backgroundTint="@color/black"
                 app:civ_border_color="@color/headingtextviewcolor"
-                app:civ_border_width="2dp"
+                app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.app.ProgressDialog;
@@ -70,6 +71,7 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner_profile_setup2);
+
         mAuth = FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         Bundle extras = getIntent().getExtras();
@@ -310,6 +312,8 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgCameraSelfiePartner.setImageDrawable(imgDrawable);
+                            imgCameraSelfiePartner.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
                             Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
 
@@ -347,6 +351,9 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
                             checkPdfUploadFront = "checked";
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfFrontPartner.setImageDrawable(imgDrawable);
+                            imgPdfFrontPartner.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
+
                             Toast.makeText(getApplicationContext(), "Front Id Pdf Uploaded", Toast.LENGTH_SHORT).show();
 
 
@@ -384,6 +391,9 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfBackPartner.setImageDrawable(imgDrawable);
+                            imgPdfBackPartner.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
+
                             Toast.makeText(getApplicationContext(), "Back Id Pdf Uploaded", Toast.LENGTH_SHORT).show();
 
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     private CountryCodePicker countryCodePicker;
     private String selectedCountryCode;
     private TextView tvPhoneDesc;
-    private Button btnMoveToSignUp;
     private String login;
     private FirebaseAuth mAuth;
     private String phNumber, verificationId;
@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         imgBack = findViewById(R.id.img_move_towards_registration_type);
 
         pd = new ProgressDialog(LoginActivity.this);
@@ -62,18 +63,19 @@ public class LoginActivity extends AppCompatActivity {
         tvPhoneDesc = findViewById(R.id.label_desc);
         btnOTP = findViewById(R.id.btn_request_otp);
         edtNumberLogin = findViewById(R.id.edt_phone_number_login);
-        btnMoveToSignUp = findViewById(R.id.btn_request_otp);
         btnSignUp = findViewById(R.id.btn_move_towards_signup);
 
+        selectedCountryCode = countryCodePicker.getSelectedCountryCodeWithPlus();
+        tvPhoneDesc.setText("Enter phone number without adding " + selectedCountryCode);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent moveToRegister = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
-                startActivity(moveToRegister);
+                onBackPressed();
             }
         });
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,14 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(moveToRegister);
             }
         });
-        btnMoveToSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent moveToRegister = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(moveToRegister);
-            }
-        });
 
         countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
@@ -106,38 +101,48 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pd.show();
-
                 phNumber = selectedCountryCode + edtNumberLogin.getEditText().getText().toString();
 
-                //final FirebaseUser user = task.getResult().getUser();
+                if (TextUtils.isEmpty(edtNumberLogin.getEditText().getText())){
 
-                final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                final DocumentReference docRef = db.collection("users").document(phNumber);
-                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            //redirect to home page
+                    edtNumberLogin.setError("Enter Phone Number");
 
-                            sendVerificationCode(phNumber);
+                }else{
+
+                    pd.show();
+
+                    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    final DocumentReference docRef = db.collection("users").document(phNumber);
+                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(final DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                //redirect to home page
+
+                                sendVerificationCode(phNumber);
 
 
-                        } else {
+                            } else {
+
+                                pd.dismiss();
+
+                                Toast.makeText(getApplicationContext(), "Please Register Your Account First!", Toast.LENGTH_SHORT).show();
+                                //redirect to sign up page
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
                             pd.dismiss();
+                            Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            Toast.makeText(getApplicationContext(), "Please Register Your Account First!", Toast.LENGTH_SHORT).show();
-                            //redirect to sign up page
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                    });
 
-                    }
-                });
+                }
 
+                //final FirebaseUser user = task.getResult().getUser();
 
             }
         });
