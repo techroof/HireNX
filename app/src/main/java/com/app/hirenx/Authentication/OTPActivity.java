@@ -119,7 +119,7 @@ public class OTPActivity extends AppCompatActivity {
 
                 sendVerificationCode(resentPhoneNumber);
 
-                Toast.makeText(getApplicationContext(), "resending code please wait...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Resending code please wait...", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -225,8 +225,6 @@ public class OTPActivity extends AppCompatActivity {
 
                                 AddStatus(registrarType);
 
-                                Toast.makeText(getApplicationContext(), "woohoo"+registrarType, Toast.LENGTH_SHORT).show();
-
                                 Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
                                 movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
@@ -236,8 +234,6 @@ public class OTPActivity extends AppCompatActivity {
                             } else if (registrarType!=null&&registrarType.equals("partner")) {
 
                                 AddStatus(registrarType);
-
-                                Toast.makeText(getApplicationContext(), "woohoo"+registrarType, Toast.LENGTH_SHORT).show();
 
                                 Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
