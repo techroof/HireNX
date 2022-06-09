@@ -104,8 +104,6 @@ public class PartnerProfileSetup3Activity extends AppCompatActivity implements I
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         skillsRv.setLayoutManager(linearLayoutManager);
 
-        //skillsRv.setNestedScrollingEnabled(true);
-
         getCategories();
 
         submitBtn.setOnClickListener(new View.OnClickListener() {

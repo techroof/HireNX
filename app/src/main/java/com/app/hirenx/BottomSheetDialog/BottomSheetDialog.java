@@ -91,30 +91,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
 
-                pd.show();
-
-                if (getExpireDates != null) {
-
-                    //Toast.makeText(getContext(), ""+LocalDateTime.parse(now.format(dtf)), Toast.LENGTH_SHORT).show();
-                    isBefore = now.isBefore(LocalDateTime.parse(getExpireDates, dtf));
-
-                    if (isBefore == true) {
-
-                        Toast.makeText(getContext(), "Its before", Toast.LENGTH_SHORT).show();
-
-                    } else if (isBefore == false) {
-
-                        Toast.makeText(getContext(), "Its after", Toast.LENGTH_SHORT).show();
-
-                        Payment();
-
-                    }
-
-
-                } else {
-
-                    Payment();
-                }
+                Payment();
 
             }
         });
@@ -141,6 +118,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     }
 
     void Payment() {
+
+        pd.show();
 
         String samount = String.valueOf(price);
         int amount = Math.round(Float.parseFloat(samount) * 100);
