@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_client_hire_search_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_client_search_hire.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_otpactivity.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_partner_profile_setup3.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_registration_completion.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_registration_type.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/custom_recyclerview_search_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/custom_recyclerview_skill_categories.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable-v24/roundedbutton.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/aboutus.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/HireNX/app/src/main/res/drawable/appinfo.xml" value="0.17222222222222222" />

@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,7 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     private ProgressDialog pd;
     private RecyclerView rvPartnerList;
     private Boolean isBefore;
+    private ImageView imgBackToSearch;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
         rvPartnerList=findViewById(R.id.rv_partners_list);
         tvSkillsandCity=findViewById(R.id.label_skill_and_city);
+        imgBackToSearch=findViewById(R.id.img_move_towards_search);
         partnersListArrayList=new ArrayList<>();
         pd=new ProgressDialog(ClientHireSearchListActivity.this);
         pd.setMessage("Loading Please Wait...");
@@ -90,6 +94,15 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
         partnersListAdapter = new PartnersListAdapter(partnersListArrayList,
                 getApplicationContext(),this);
+
+        imgBackToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+
+            }
+        });
 
 
     }
@@ -174,6 +187,8 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
     void ChangeActivationStatus() {
 
+
+
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("activationStatus", "activated");
 
@@ -186,9 +201,16 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
                         if (task.isSuccessful()) {
 
+
+
                             if(!((Activity) ClientHireSearchListActivity.this).isFinishing())
                             {
                                 pd.dismiss();
+
+                                /*BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                bottomSheet.dismiss();*/
+
+
                             }
 
 
@@ -215,7 +237,7 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     void ChangeActivationStatusNonActivated() {
 
         Map<String, Object> userProfileMap = new HashMap<>();
-        userProfileMap.put("activatedStatus", "normal");
+        userProfileMap.put("activationStatus", "normal");
 
         firestore.collection("users")
                 .document(uId)
@@ -297,6 +319,9 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
                     } else {
 
+                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                        bottomSheet.show(getSupportFragmentManager(),
+                                "ModalBottomSheet");
                     }
 
                 }
@@ -321,6 +346,7 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onPaymentSuccess(String s) {
 
@@ -328,6 +354,13 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
         {
             pd.show();
         }
+
+        Calendar c = Calendar.getInstance();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expireDate = LocalDateTime.now().plusHours(24);
+
+        expireDates = dtf.format(expireDate).toString();
 
         AddExpiryDate(expireDates);
 

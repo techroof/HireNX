@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.hirenx.Interfaces.JsonPlaceHolderAPI;
@@ -52,6 +53,7 @@ public class ClientSearchHireActivity extends AppCompatActivity {
     ArrayList<SearchDialogs> skillList;
     private EditText etCityVillage, etSkills;
     private Button btnHireSearch;
+    private ImageView imgBackToHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,11 @@ public class ClientSearchHireActivity extends AppCompatActivity {
         pd.setMessage("Please wait...");
         etCityVillage = findViewById(R.id.et_search_city);
         etSkills = findViewById(R.id.et_search_skills);
+        imgBackToHome = findViewById(R.id.img_move_towards_hire);
         btnHireSearch = findViewById(R.id.btn_hire_search);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        uId= firebaseAuth.getUid();
+        uId = firebaseAuth.getUid();
 
 
         etCityVillage.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +129,14 @@ public class ClientSearchHireActivity extends AppCompatActivity {
                     }
                 }).show();
 
+                imgBackToHome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        onBackPressed();
+                    }
+                });
+
                /* new AlertDialog.Builder(ClientSearchHireActivity.this).setTitle("Select Your City")
                         .setSingleChoiceItems(skillArraylist.toArray(new String[skillArraylist.size()]), 0, new DialogInterface.OnClickListener() {
                             @Override
@@ -160,45 +171,54 @@ public class ClientSearchHireActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Intent moveToPartnersList = new Intent(getApplicationContext(), ClientHireSearchListActivity.class);
-                moveToPartnersList.putExtra("city", "Qwerty");
-                moveToPartnersList.putExtra("skill", skill);
-                startActivity(moveToPartnersList);
+                if (city != null && skill != null) {
+
+                    Intent moveToPartnersList = new Intent(getApplicationContext(), ClientHireSearchListActivity.class);
+                    moveToPartnersList.putExtra("city", city);
+                    moveToPartnersList.putExtra("skill", skill);
+                    startActivity(moveToPartnersList);
+
+                } else {
+
+                    Toast.makeText(ClientSearchHireActivity.this, "Please Fill the Above fields!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }
-
 
     private void skillsList() {
 
         skillList = new ArrayList<>();
         firestore.collection("skills").
                 get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
 
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        String skillName = document.getString("skill");
-                        skillList.add(new SearchDialogs(skillName));
+                                String skillName = document.getString("skill");
+                                skillList.add(new SearchDialogs(skillName));
 
 
+                            }
+
+
+                        } else {
+
+                            Log.d("d", "Error getting documents: ", task.getException());
+
+                        }
                     }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-
-                } else {
-                    Log.d("d", "Error getting documents: ", task.getException());
-
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
     }

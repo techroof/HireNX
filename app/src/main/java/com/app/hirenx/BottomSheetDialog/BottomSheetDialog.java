@@ -139,6 +139,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             object.put("prefill.email", email);
 
             pd.dismiss();
+            dismiss();
+
 
             checkout.open(getActivity(), object);
         } catch (JSONException e) {

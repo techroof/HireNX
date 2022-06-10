@@ -87,7 +87,7 @@ public class OTPActivity extends AppCompatActivity {
 
             verificationId = extras.getString("verificationId");
 
-            authentication = extras.getString("authentication");
+            //authentication = extras.getString("authentication");
 
             registrarType = extras.getString("registrerType");
 
@@ -158,9 +158,9 @@ public class OTPActivity extends AppCompatActivity {
                             /*Intent i = new Intent(OtpApproval.this, HomeScreen.class);
                             startActivity(i);*/
 
-                            if(authentication!=null){
+                            if(registrarType!=null){
 
-                                if (authentication.equals("login")) {
+                                if (registrarType.equals("login")) {
 
                                 /*Intent movetoHomeActivity =new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(movetoHomeActivity);*/
@@ -221,7 +221,7 @@ public class OTPActivity extends AppCompatActivity {
 
                                 //------------------------------------------\\
 
-                            } else if (registrarType!=null&&registrarType.equals("consumer")) {
+                            } else if (registrarType.equals("consumer")) {
 
                                 AddStatus(registrarType);
 
@@ -231,7 +231,7 @@ public class OTPActivity extends AppCompatActivity {
                                 startActivity(movetoCompletionActivity);
                                 finish();
 
-                            } else if (registrarType!=null&&registrarType.equals("partner")) {
+                            } else if (registrarType.equals("partner")) {
 
                                 AddStatus(registrarType);
 
@@ -245,12 +245,12 @@ public class OTPActivity extends AppCompatActivity {
 
                                 AddStatus(registrarType);
 
-
                                 Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
                                 movetoCompletionActivity.putExtra("registrerType", registrarType);
                                 movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
                                 startActivity(movetoCompletionActivity);
                                 finish();
+
                             }
 
 

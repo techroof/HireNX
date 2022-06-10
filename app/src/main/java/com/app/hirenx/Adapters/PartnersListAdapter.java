@@ -111,10 +111,9 @@ public class PartnersListAdapter extends RecyclerView.Adapter<PartnersListAdapte
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-
                         if(task.isSuccessful()){
 
-                            status = task.getResult().getString("activatedStatus");
+                            status = task.getResult().getString("activationStatus");
 
                             if(status.equals("activated")){
 
