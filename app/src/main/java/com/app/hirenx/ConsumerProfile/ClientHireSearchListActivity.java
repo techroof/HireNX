@@ -41,7 +41,6 @@ import java.util.Map;
 
 public class ClientHireSearchListActivity extends AppCompatActivity implements OpenBottomSheetClickListener, PaymentResultListener {
 
-
     private OpenBottomSheetClickListener bottomSheetClickListener;
     private FirebaseFirestore firestore;
     private PartnersListAdapter partnersListAdapter;

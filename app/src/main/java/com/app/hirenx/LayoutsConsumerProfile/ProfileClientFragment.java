@@ -53,7 +53,7 @@ public class ProfileClientFragment extends Fragment {
     private Uri imageUri;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog,pd;
     private String Storage_Path = "All_User_Images_Uploads/";
     private FirebaseUser user;
 
@@ -92,6 +92,11 @@ public class ProfileClientFragment extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Uploading Image");
         progressDialog.setCanceledOnTouchOutside(false);
+
+        pd=new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading");
+        pd.setCanceledOnTouchOutside(false);
+
         tvPartnerName = view.findViewById(R.id.tv_client_partner_name);
         tvPartnerDateofBirth = view.findViewById(R.id.tv_client_partner_dob);
         tvPartnerGender = view.findViewById(R.id.tv_client_gender);
@@ -122,6 +127,7 @@ public class ProfileClientFragment extends Fragment {
 
     private void GetPartnerProfile() {
 
+        pd.show();
         firestore.collection("users").document(uId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -132,7 +138,7 @@ public class ProfileClientFragment extends Fragment {
                     String partnerGender = task.getResult().getString("gender");
                     String partnerMaritalStatus = task.getResult().getString("maritalStatus");
                     String partnerEmail = task.getResult().getString("email");
-                    String partnerPhoneNumber = task.getResult().getString("clan");
+                    String partnerPhoneNumber = task.getResult().getString("phoneNumber");
                     String partnerAddress1 = task.getResult().getString("address");
                     String partnerAddress2 = task.getResult().getString("address2");
                     String partnerLandMark = task.getResult().getString("landMark");
@@ -163,6 +169,8 @@ public class ProfileClientFragment extends Fragment {
 
                             .into(partnerImage);
 
+                    pd.dismiss();
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -170,6 +178,8 @@ public class ProfileClientFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
 
                 Toast.makeText(getActivity(), "Failed To Get User Data", Toast.LENGTH_SHORT).show();
+
+                pd.dismiss();
             }
         });
     }

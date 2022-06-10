@@ -26,7 +26,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/user_avatar"
+                android:src="@drawable/add"
                 app:civ_border_color="@color/headingtextviewcolor"
                 app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -193,8 +193,8 @@
 
             <TextView
                 android:id="@+id/tv_phone_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="-"
@@ -209,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:text="Communication Details"
                 android:textColor="@color/headingtextviewcolor"
                 android:textSize="16sp"
