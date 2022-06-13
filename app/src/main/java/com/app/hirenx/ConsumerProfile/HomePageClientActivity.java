@@ -46,7 +46,7 @@ public class HomePageClientActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private String uId, checkOnBoarding;
     private FirebaseUser user;
-    private String userType,status;
+    private String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,25 +80,8 @@ public class HomePageClientActivity extends AppCompatActivity {
 
         user = firebaseAuth.getCurrentUser();
 
+        GetUserStatus();
 
-
-        if (user == null) {
-
-            //Intent login = new Intent(HomePageClientActivity.this, RegistrationTypeActivity.class);
-            Intent login = new Intent(HomePageClientActivity.this, RegistrationTypeActivity.class);
-
-            startActivity(login);
-
-            finish();
-
-        } else {
-
-            user = FirebaseAuth.getInstance().getCurrentUser();
-            uId = user.getPhoneNumber();
-
-            GetUserStatus();
-
-        }
         pager.beginFakeDrag();
         /** Getting fragment manager */
         clientfm = getSupportFragmentManager();
@@ -171,22 +154,22 @@ public class HomePageClientActivity extends AppCompatActivity {
 
         uId = user.getPhoneNumber();
 
-        firestore.collection("users").document(uId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection("users").document(uId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    userType = task.getResult().getString("userType");
-                    status=task.getResult().getString("stepStatus");
+                    status = task.getResult().getString("stepStatus");
 
-                     if (userType.equals("consumer") && status == null) {
+                    if (status == null) {
 
                         Intent moveToConsumer1 = new Intent(HomePageClientActivity.this, ClientProfileSetupActivity.class);
                         startActivity(moveToConsumer1);
                         Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
 
-                    } else if (userType.equals("consumer") && status.equals("1")) {
+                    } else if ( status.equals("1")) {
 
                         Intent moveToConsumer2 = new Intent(HomePageClientActivity.this, ClientProfileSetup2Activity.class);
                         startActivity(moveToConsumer2);
@@ -194,7 +177,7 @@ public class HomePageClientActivity extends AppCompatActivity {
 
                     }
 
-                }else{
+                } else {
 
                 }
 

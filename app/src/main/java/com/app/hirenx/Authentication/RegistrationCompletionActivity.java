@@ -14,7 +14,7 @@ import com.app.hirenx.PartnerProfile.PartnerProfileSetupActivity;
 public class RegistrationCompletionActivity extends AppCompatActivity {
 
     private Button btnProfileCompletion;
-    private String registrarType,phoneNumber;
+    private String userType,phoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +25,7 @@ public class RegistrationCompletionActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-
-            registrarType= extras.getString("registrerType");
+            userType= extras.getString("userType");
             phoneNumber=extras.getString("phoneNumber");
         }
 
@@ -34,17 +33,17 @@ public class RegistrationCompletionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(registrarType.equals("consumer")){
+                if(userType.equals("consumer")){
 
                     Intent movetoClientProfileSetup =new Intent(getApplicationContext(), ClientProfileSetupActivity.class);
-                    movetoClientProfileSetup.putExtra("registerType",registrarType);
+                    movetoClientProfileSetup.putExtra("registerType",userType);
                     movetoClientProfileSetup.putExtra("phoneNumber",phoneNumber);
                     startActivity(movetoClientProfileSetup);
 
-                }else if(registrarType.equals("partner")){
+                }else if(userType.equals("partner")){
 
                     Intent movetoPartnerProfileSetup =new Intent(getApplicationContext(), PartnerProfileSetupActivity.class);
-                    movetoPartnerProfileSetup.putExtra("registerType",registrarType);
+                    movetoPartnerProfileSetup.putExtra("registerType",userType);
                     movetoPartnerProfileSetup.putExtra("phoneNumber",phoneNumber);
                     startActivity(movetoPartnerProfileSetup);
                 }

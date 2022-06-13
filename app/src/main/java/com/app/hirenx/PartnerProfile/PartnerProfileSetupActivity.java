@@ -51,14 +51,15 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
     private List<String> countryNameList;
     private List<String> cityNameList;
     private List<City> cityArrayList;
-    private EditText etFullName,etEmail,etGender,etdob,etMaritalStatus,etDocumentType,etDocumentIDNumber,etAddress,etAddress2,etLandMark,etPincode,etCity,etState;
-    private String fullName,email,gender,dob,maritalStatus,documentType,documentIDNumber,address,address2,landMark,pinCode,city,state,stateId;
+    private EditText etFullName, etEmail, etGender, etdob, etMaritalStatus, etDocumentType, etDocumentIDNumber, etAddress, etAddress2, etLandMark, etPincode, etCity, etState;
+    private String fullName, email, gender, dob, maritalStatus, documentType, documentIDNumber, address, address2, landMark, pinCode, city, state, stateId;
     private Button btnPartnerSetup1;
-    private String[] genderList,maritalStatusList,documentTypeList;
+    private String[] genderList, maritalStatusList, documentTypeList;
     final Calendar myCalendar = Calendar.getInstance();
     private ProgressDialog pd;
     private FirebaseUser user;
-    private String registerType,phoneNumber,uId,id;
+    private String phoneNumber, uId, id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,30 +68,17 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         genderList = getResources().getStringArray(R.array.gender);
         maritalStatusList = getResources().getStringArray(R.array.maritalstatus);
         documentTypeList = getResources().getStringArray(R.array.documentType);
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         pd = new ProgressDialog(PartnerProfileSetupActivity.this);
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Please wait...");
 
-        Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-
-            registerType= extras.getString("registerType");
-
-            phoneNumber=extras.getString("phoneNumber");
-
-        }else{
-
-            phoneNumber= user.getPhoneNumber();
-
-        }
-
+        phoneNumber = user.getPhoneNumber();
         //firestore initialization
-        firestore=FirebaseFirestore.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
-        uId=mAuth.getCurrentUser().getUid();
+        uId = mAuth.getCurrentUser().getUid();
         //calender date
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -103,21 +91,21 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             }
         };
 
-        btnPartnerSetup1=findViewById(R.id.btn_partner_proceed_step1);
+        btnPartnerSetup1 = findViewById(R.id.btn_partner_proceed_step1);
 
-        etFullName=findViewById(R.id.et_fullname);
-        etEmail=findViewById(R.id.et_email);
-        etGender=findViewById(R.id.et_gender);
-        etdob=findViewById(R.id.et_dob);
-        etMaritalStatus=findViewById(R.id.et_marital_status);
-        etDocumentType=findViewById(R.id.et_document_type);
-        etDocumentIDNumber=findViewById(R.id.et_document_id_number);
-        etAddress=findViewById(R.id.et_address);
-        etAddress2=findViewById(R.id.et_address2);
-        etLandMark=findViewById(R.id.et_landmark);
-        etPincode=findViewById(R.id.et_pincode);
-        etCity=findViewById(R.id.et_city);
-        etState=findViewById(R.id.et_state);
+        etFullName = findViewById(R.id.et_fullname);
+        etEmail = findViewById(R.id.et_email);
+        etGender = findViewById(R.id.et_gender);
+        etdob = findViewById(R.id.et_dob);
+        etMaritalStatus = findViewById(R.id.et_marital_status);
+        etDocumentType = findViewById(R.id.et_document_type);
+        etDocumentIDNumber = findViewById(R.id.et_document_id_number);
+        etAddress = findViewById(R.id.et_address);
+        etAddress2 = findViewById(R.id.et_address2);
+        etLandMark = findViewById(R.id.et_landmark);
+        etPincode = findViewById(R.id.et_pincode);
+        etCity = findViewById(R.id.et_city);
+        etState = findViewById(R.id.et_state);
 
         etGender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +120,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                                 int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                                 etGender.setText(genderList[selectedPosition]);
-                                gender= genderList[selectedPosition];
+                                gender = genderList[selectedPosition];
                             }
                         })
                         .show();
@@ -153,7 +141,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                                 int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                                 etMaritalStatus.setText(maritalStatusList[selectedPosition]);
-                                maritalStatus= maritalStatusList[selectedPosition];
+                                maritalStatus = maritalStatusList[selectedPosition];
                             }
                         })
                         .show();
@@ -174,7 +162,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                                 int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                                 etDocumentType.setText(documentTypeList[selectedPosition]);
-                                documentType= documentTypeList[selectedPosition];
+                                documentType = documentTypeList[selectedPosition];
                             }
                         })
                         .show();
@@ -186,7 +174,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                new DatePickerDialog(PartnerProfileSetupActivity.this,R.style.DialogTheme, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(PartnerProfileSetupActivity.this, R.style.DialogTheme, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
             }
         });
@@ -196,34 +184,34 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your State")
-                            .setSingleChoiceItems(statesnameList.toArray(new String[statesnameList.size()]), 0, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your State")
+                        .setSingleChoiceItems(statesnameList.toArray(new String[statesnameList.size()]), 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                                }
-                            })
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            }
+                        })
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                                public void onClick(DialogInterface dialog, int whichButton) {
+                            public void onClick(DialogInterface dialog, int whichButton) {
 
-                                    dialog.dismiss();
+                                dialog.dismiss();
 
-                                    int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                                    etState.setText(statesnameList.get(selectedPosition));
-                                    state = statesnameList.get(selectedPosition);
+                                int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                                etState.setText(statesnameList.get(selectedPosition));
+                                state = statesnameList.get(selectedPosition);
 
-                                    stateId= statesList.get(selectedPosition).getIso2();
+                                stateId = statesList.get(selectedPosition).getIso2();
 
-                                    getCities(101,stateId);
+                                getCities(101, stateId);
 
-                                }
+                            }
 
 
-                            })
-                            .show();
+                        })
+                        .show();
 
-                }
+            }
 
 
         });
@@ -232,12 +220,12 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(TextUtils.isEmpty(state)) {
+                if (TextUtils.isEmpty(state)) {
 
                     etCity.setEnabled(false);
                     Toast.makeText(getApplicationContext(), "please select your country and state first", Toast.LENGTH_SHORT).show();
 
-                }else {
+                } else {
 
                     new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your City")
                             .setSingleChoiceItems(cityNameList.toArray(new String[cityNameList.size()]), 0, new DialogInterface.OnClickListener() {
@@ -259,7 +247,8 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
-                }}
+                }
+            }
 
         });
 
@@ -271,16 +260,16 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                fullName=etFullName.getText().toString();
-                email=etEmail.getText().toString();
-                documentIDNumber=etDocumentIDNumber.getText().toString();
-                address=etAddress.getText().toString();
-                address2=etAddress2.getText().toString();
-                landMark=etLandMark.getText().toString();
-                pinCode=etPincode.getText().toString();
-                city=etCity.getText().toString();
-                state=etState.getText().toString();
-                dob=etdob.getText().toString();
+                fullName = etFullName.getText().toString();
+                email = etEmail.getText().toString();
+                documentIDNumber = etDocumentIDNumber.getText().toString();
+                address = etAddress.getText().toString();
+                address2 = etAddress2.getText().toString();
+                landMark = etLandMark.getText().toString();
+                pinCode = etPincode.getText().toString();
+                city = etCity.getText().toString();
+                state = etState.getText().toString();
+                dob = etdob.getText().toString();
 
                 if (TextUtils.isEmpty(etFullName.getText().toString())) {
 
@@ -325,27 +314,27 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                 }
 
-                if(gender==null){
+                if (gender == null) {
 
                     etGender.setError("Please enter your gender");
 
                 }
 
 
-                if(dob==null){
+                if (dob == null) {
 
                     etdob.setError("Please enter your date of birth");
 
                 }
 
-                if(maritalStatus==null){
+                if (maritalStatus == null) {
 
                     etMaritalStatus.setError("Please enter your marital status");
 
                 }
 
 
-                if(documentType==null){
+                if (documentType == null) {
 
                     etMaritalStatus.setError("Please enter your document type");
 
@@ -361,21 +350,18 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(etMaritalStatus.getText().toString())
                         && !TextUtils.isEmpty(etDocumentType.getText().toString())) {
 
-                        pd.show();
+                    pd.show();
 
-                    AddUser(fullName,email, documentIDNumber,address, landMark, pinCode, city, state,address2, gender, dob, maritalStatus,documentType,phoneNumber);
+                    AddUser(fullName, email, documentIDNumber, address, landMark, pinCode, city, state, address2, gender, dob, maritalStatus, documentType, phoneNumber);
 
                 }
-
-
-
 
 
             }
         });
     }
 
-    private void updateDate(){
+    private void updateDate() {
 
         String myFormat = "dd/MM/yy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
@@ -383,11 +369,11 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
     }
 
-    private void AddUser(String fullName,String email,String documentIDNumber,String address, String landMark,String pinCode,String city, String state,String address2, String gender,String dateofbirth,String maritalStatus,String documentType,String phoneNumber){
+    private void AddUser(String fullName, String email, String documentIDNumber, String address, String landMark, String pinCode, String city, String state, String address2, String gender, String dateofbirth, String maritalStatus, String documentType, String phoneNumber) {
 
         //FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
 
-        id=user.getUid();
+        id = user.getUid();
 
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("fullName", fullName);
@@ -403,10 +389,10 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         userProfileMap.put("dateofbirth", dateofbirth);
         userProfileMap.put("maritalStatus", maritalStatus);
         userProfileMap.put("documentType", documentType);
-        userProfileMap.put("phoneNumber",phoneNumber);
-        userProfileMap.put("stepStatus","1");
-        userProfileMap.put("id",id);
-        userProfileMap.put("activationStatus","normal");
+        userProfileMap.put("phoneNumber", phoneNumber);
+        userProfileMap.put("stepStatus", "1");
+        userProfileMap.put("id", id);
+        userProfileMap.put("activationStatus", "normal");
 
         firestore.collection("users")
                 .document(phoneNumber)
@@ -419,8 +405,8 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                             pd.dismiss();
 
-                            Intent movetoPartnerSetup2=new Intent(PartnerProfileSetupActivity.this,PartnerProfileSetup2Activity.class);
-                            movetoPartnerSetup2.putExtra("phoneNumber",phoneNumber);
+                            Intent movetoPartnerSetup2 = new Intent(PartnerProfileSetupActivity.this, PartnerProfileSetup2Activity.class);
+                            movetoPartnerSetup2.putExtra("phoneNumber", phoneNumber);
                             startActivity(movetoPartnerSetup2);
                             overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                             Toast.makeText(getApplicationContext(), "Step 1 completed", Toast.LENGTH_SHORT).show();
@@ -429,12 +415,12 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -444,8 +430,8 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
         pd.show();
 
-        statesnameList=new ArrayList<>();
-        statesList=new ArrayList<>();
+        statesnameList = new ArrayList<>();
+        statesList = new ArrayList<>();
 
         // Toast.makeText(getApplicationContext(), "Please wait while the states are getting", Toast.LENGTH_LONG).show();
 
@@ -513,19 +499,19 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
     }
 
-    private void getCities(int countryId,String stateName) {
+    private void getCities(int countryId, String stateName) {
 
         pd.show();
 
         // countryArraylist = new ArrayList<>();
-        cityArrayList=new ArrayList<>();
-        cityNameList =new ArrayList<>();
+        cityArrayList = new ArrayList<>();
+        cityNameList = new ArrayList<>();
         //cityArrayList=new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
 
         JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
-        Call<List<City>> callcity = jsonPlaceHolderAPI.getCities(countryId,stateName);
+        Call<List<City>> callcity = jsonPlaceHolderAPI.getCities(countryId, stateName);
 
         callcity.enqueue(new Callback<List<City>>() {
             @Override

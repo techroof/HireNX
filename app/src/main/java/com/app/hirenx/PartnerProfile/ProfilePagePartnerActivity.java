@@ -115,20 +115,20 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
                     userType = task.getResult().getString("userType");
                     status=task.getResult().getString("stepStatus");
 
-                    if (userType.equals("partner") && status == null) {
+                    if ( status == null) {
 
                         Intent moveToPartner1 = new Intent(ProfilePagePartnerActivity.this, PartnerProfileSetupActivity.class);
                         startActivity(moveToPartner1);
                         Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
 
-                    } else if (userType.equals("partner") && status.equals("1")) {
+                    } else if ( status.equals("1")) {
 
                         Intent moveToPartner2 = new Intent(ProfilePagePartnerActivity.this, PartnerProfileSetup2Activity.class);
                         startActivity(moveToPartner2);
                         Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
 
 
-                    } else if (userType.equals("partner") && status.equals("2")) {
+                    } else if (status.equals("2")) {
 
                         Intent moveToPartner3 = new Intent(ProfilePagePartnerActivity.this, PartnerProfileSetup3Activity.class);
                         startActivity(moveToPartner3);

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.app.ProgressDialog;
@@ -61,6 +62,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
     private Uri photoURI, pdfUri;
     private ImageView imgCameraSelfieClient,imgPdfFrontClient,imgPdfBackClient;
     private String checkImageupload, checkPdfUploadFront, checkPdfUploadBack, backPdf,phoneNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,11 +143,14 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, GALLERY);
             }
         });
+
         btnProceedstep3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (checkImageupload.equals("checked") && checkPdfUploadFront.equals("checked") && checkPdfUploadBack.equals("checked")) {
+                if (checkImageupload.equals("checked")
+                        && checkPdfUploadFront.equals("checked")
+                        && checkPdfUploadBack.equals("checked")) {
 
                     Intent movetoPartnerSetup2 = new Intent(ClientProfileSetup2Activity.this, ClientProfileCompletionActivity.class);
                     startActivity(movetoPartnerSetup2);
@@ -308,6 +313,8 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
                             checkImageupload = "checked";
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgCameraSelfieClient.setImageDrawable(imgDrawable);
+                            imgCameraSelfieClient.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
 
 
                         }
@@ -345,6 +352,8 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfFrontClient.setImageDrawable(imgDrawable);
+                            imgPdfFrontClient.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
                         }
 
                     }
@@ -381,6 +390,8 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             Drawable imgDrawable = getResources().getDrawable(R.drawable.done_verify);
                             imgPdfBackClient.setImageDrawable(imgDrawable);
+                            imgPdfBackClient.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                                    R.color.donecolor), android.graphics.PorterDuff.Mode.SRC_IN);
 
                         }
 

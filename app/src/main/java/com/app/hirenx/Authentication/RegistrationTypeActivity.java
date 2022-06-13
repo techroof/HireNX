@@ -147,7 +147,7 @@ public class RegistrationTypeActivity extends AppCompatActivity {
                 }else if(type.equals("consumer")){
 
                     Intent moveConsumerRegistration=new Intent(getApplicationContext(),RegisterActivity.class);
-                    moveConsumerRegistration.putExtra("registrerType",type);
+                    moveConsumerRegistration.putExtra("userType",type);
                     startActivity(moveConsumerRegistration);
                   //  finish();
                 }
@@ -156,7 +156,7 @@ public class RegistrationTypeActivity extends AppCompatActivity {
                 else if(type.equals("partner")){
 
                     Intent moveConsumerRegistration=new Intent(getApplicationContext(),RegisterActivity.class);
-                    moveConsumerRegistration.putExtra("registrerType",type);
+                    moveConsumerRegistration.putExtra("userType",type);
                     startActivity(moveConsumerRegistration);
                     //finish();
                 }

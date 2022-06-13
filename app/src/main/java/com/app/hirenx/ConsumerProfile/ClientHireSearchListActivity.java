@@ -54,6 +54,7 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     private RecyclerView rvPartnerList;
     private Boolean isBefore;
     private ImageView imgBackToSearch;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

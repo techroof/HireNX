@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView tvPhoneDesc;
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
-    private String phNumber,verificationId,authentication;
+    private String phNumber,verificationId,authentication,userType;
     private TextInputLayout edtNumber;
     private Button btnOTP,btnMovetoLogin;
     private ImageView imgMoveToRegistrationType;
@@ -69,14 +69,13 @@ public class RegisterActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            authentication=extras.getString("registrerType");
+            userType=extras.getString("userType");
 
             // and get whatever type user account id is
         }
 
         selectedCountryCode=countryCodePicker.getSelectedCountryCodeWithPlus();
         tvPhoneDesc.setText("Enter phone number without adding "+ selectedCountryCode);
-
 
         btnMovetoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,7 +192,8 @@ public class RegisterActivity extends AppCompatActivity {
             verificationId = s;
             Intent intent=new Intent(RegisterActivity.this, OTPActivity.class);
             intent.putExtra("phoneNumber",phNumber);
-            intent.putExtra("registrerType",authentication);
+            intent.putExtra("userType",userType);
+            intent.putExtra("authenticationType","register");
             intent.putExtra("verificationId",verificationId);
             startActivity(intent);
         }

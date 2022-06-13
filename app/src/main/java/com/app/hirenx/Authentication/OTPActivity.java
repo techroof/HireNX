@@ -30,6 +30,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.razorpay.OTP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,21 +39,13 @@ import java.util.concurrent.TimeUnit;
 public class OTPActivity extends AppCompatActivity {
 
     private ImageView imgMoveRegistration;
-
     private PinView pinView;
-
-    private String getcod, verificationId,userType, enterCode, resendCodeVerificationId,uId;
-
+    private String getcod, verificationId, enterCode, resendCodeVerificationId
+            ,uId,phoneNumber, authenticationType, userType, resentPhoneNumber, userTypeLogin;;
     private Button btnVerify;
-
     FirebaseAuth firebaseAuth;
-
     FirebaseFirestore firestore;
-
-    private String phoneNumber, authentication, registrarType, resentPhoneNumber;
-
     private TextView tvPhoneNumber;
-
     private TextView tvResendCode;
 
     @Override
@@ -61,17 +54,11 @@ public class OTPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otpactivity);
 
         imgMoveRegistration = findViewById(R.id.img_move_towards_registration);
-
         pinView = findViewById(R.id.pin_view);
-
         btnVerify = findViewById(R.id.btn_verify);
-
         tvPhoneNumber = findViewById(R.id.label_phone_number);
-
         tvResendCode = findViewById(R.id.tv_code_desc);
-
         firebaseAuth = FirebaseAuth.getInstance();
-
         firestore = FirebaseFirestore.getInstance();
 
         Bundle extras = getIntent().getExtras();
@@ -80,21 +67,12 @@ public class OTPActivity extends AppCompatActivity {
 
         if (extras != null) {
 
-
-            verificationId = extras.getString("code");
-
             phoneNumber = extras.getString("phoneNumber");
-
             verificationId = extras.getString("verificationId");
-
-            //authentication = extras.getString("authentication");
-
-            registrarType = extras.getString("registrerType");
-
+            authenticationType = extras.getString("authenticationType");
+            userType = extras.getString("userType");
             tvPhoneNumber.setText(phoneNumber);
-
             //Toast.makeText(getApplicationContext(), "" + registrarType + authentication, Toast.LENGTH_SHORT).show();
-
             // and get whatever type user account id is
         }
 
@@ -152,109 +130,11 @@ public class OTPActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
-                            // if the code is correct and the task is successful
-                            // we are sending our user to new activity.
-                            /*Intent i = new Intent(OtpApproval.this, HomeScreen.class);
-                            startActivity(i);*/
 
-                            if(registrarType!=null){
-
-                                if (registrarType.equals("login")) {
-
-                                /*Intent movetoHomeActivity =new Intent(getApplicationContext(), HomeActivity.class);
-                                startActivity(movetoHomeActivity);*/
-
-                                    //signinwith credentials
-
-                                    final FirebaseUser user = task.getResult().getUser();
-                                    String uid = user.getUid();
-                                    final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    final DocumentReference docRef = db.collection("users").document(phoneNumber);
-                                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(final DocumentSnapshot documentSnapshot) {
-                                            if (documentSnapshot.exists()) {
-                                                //redirect to home page
-
-                                                userType=documentSnapshot.getString("userType");
-
-                                                if(userType.equals("consumer")){
-
-
-                                                    Intent movetoHomeActivity = new Intent(getApplicationContext(), HomePageClientActivity.class);
-
-                                                    startActivity(movetoHomeActivity);
-                                                    Toast.makeText(OTPActivity.this, "Successfully logged in", Toast.LENGTH_LONG).show();
-                                                    finish();
-
-                                                }else{
-
-
-                                                    Intent movetoProfilePagePartner = new Intent(getApplicationContext(), ProfilePagePartnerActivity.class);
-
-                                                    startActivity(movetoProfilePagePartner);
-                                                    Toast.makeText(OTPActivity.this, "Successfully logged in", Toast.LENGTH_LONG).show();
-                                                    finish();
-
-                                                }
-
-                                            } else {
-
-                                                Intent movetoHomeActivity = new Intent(getApplicationContext(), RegisterActivity.class);
-                                                startActivity(movetoHomeActivity);
-                                                Toast.makeText(OTPActivity.this, "Please Register Yourself First", Toast.LENGTH_LONG).show();
-                                                finish();
-
-                                                //redirect to sign up page
-                                            }
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-
-                                            Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-
-                                }
-
-                                //------------------------------------------\\
-
-                            } else if (registrarType.equals("consumer")) {
-
-                                AddStatus(registrarType);
-
-                                Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
-                                movetoCompletionActivity.putExtra("registrerType", registrarType);
-                                movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
-                                startActivity(movetoCompletionActivity);
-                                finish();
-
-                            } else if (registrarType.equals("partner")) {
-
-                                AddStatus(registrarType);
-
-                                Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
-                                movetoCompletionActivity.putExtra("registrerType", registrarType);
-                                movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
-                                startActivity(movetoCompletionActivity);
-
-                                finish();
-                            } else {
-
-                                AddStatus(registrarType);
-
-                                Intent movetoCompletionActivity = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
-                                movetoCompletionActivity.putExtra("registrerType", registrarType);
-                                movetoCompletionActivity.putExtra("phoneNumber",phoneNumber);
-                                startActivity(movetoCompletionActivity);
-                                finish();
-
-                            }
-
-
-                            //finish();
+                            AddStatus(userType);
+                              //finish();
                         } else {
                             // if the code is not correct then we are
                             // displaying an error message to the user.
@@ -318,29 +198,75 @@ public class OTPActivity extends AppCompatActivity {
         Map<String, Object> userTypeMap = new HashMap<>();
         userTypeMap.put("userType", userType);
 
-        firestore.collection("users")
-                .document(uId)
-                .set(userTypeMap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+        if (authenticationType.equals("login")){
 
-                        if (task.isSuccessful()) {
+            firestore.collection("users")
+                    .document(uId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                            Toast.makeText(OTPActivity.this, "Your Account Has Been Created", Toast.LENGTH_LONG).show();
+                            if (task.isSuccessful()){
+
+                                userTypeLogin=task.getResult().get("userType").toString();
+
+                                if (userTypeLogin.equals("consumer")){
+
+                                    Intent home=new Intent(OTPActivity.this,HomePageClientActivity.class);
+                                    startActivity(home);
+
+                                }else if (userTypeLogin.equals("partner")){
+
+                                    Intent home=new Intent(OTPActivity.this,ProfilePagePartnerActivity.class);
+                                    startActivity(home);
+
+                                }
+
+                            }else{
+
+                            }
 
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(getApplicationContext(), "Failed To Create Account", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
-            }
-        });
+
+        }else if (authenticationType.equals("register")){
+
+            firestore.collection("users")
+                    .document(uId)
+                    .set(userTypeMap)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+
+                                Intent intent = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
+                                intent.putExtra("userType",userType);
+                                startActivity(intent);
+                                Toast.makeText(OTPActivity.this, "Your Account Has Been Created.", Toast.LENGTH_LONG).show();
+                                finish();
+
+                            }else{
+
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(getApplicationContext(), "Failed To Create Account", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+        }
 
     }
 }

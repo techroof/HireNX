@@ -185,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
             intent.putExtra("phoneNumber", phNumber);
             intent.putExtra("verificationId", verificationId);
-            intent.putExtra("registrerType", login);
+            intent.putExtra("authenticationType", "login");
             startActivity(intent);
         }
 
