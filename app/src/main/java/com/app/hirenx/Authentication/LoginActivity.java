@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent moveToRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent moveToRegister = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
                 startActivity(moveToRegister);
             }
         });

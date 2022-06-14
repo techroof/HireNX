@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView tvPhoneDesc;
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
-    private String phNumber,verificationId,authentication,userType;
+    private String phNumber,verificationId,userType;
     private TextInputLayout edtNumber;
     private Button btnOTP,btnMovetoLogin;
     private ImageView imgMoveToRegistrationType;
@@ -90,46 +90,54 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phNumber=selectedCountryCode+edtNumber.getEditText().getText().toString();
+                if (userType==null){
 
-                if (TextUtils.isEmpty(edtNumber.getEditText().getText())){
-
-                    edtNumber.setError("Enter Phone Number");
+                    Toast.makeText(RegisterActivity.this, "Please go back and select registration type", Toast.LENGTH_LONG).show();
 
                 }else{
 
-                    pd.show();
+                    phNumber=selectedCountryCode+edtNumber.getEditText().getText().toString();
 
-                    final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    final DocumentReference docRef = db.collection("users").document(phNumber);
-                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(final DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.exists()) {
-                                //redirect to home page
+                    if (TextUtils.isEmpty(edtNumber.getEditText().getText())){
 
+                        edtNumber.setError("Enter Phone Number");
+
+                    }else{
+
+                        pd.show();
+
+                        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        final DocumentReference docRef = db.collection("users").document(phNumber);
+                        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(final DocumentSnapshot documentSnapshot) {
+                                if (documentSnapshot.exists()) {
+                                    //redirect to home page
+
+                                    pd.dismiss();
+
+                                    Toast.makeText(getApplicationContext(), "Your Account Has Already Been Created, Please Login!", Toast.LENGTH_SHORT).show();
+
+
+                                } else {
+
+                                    //redirect to sign up page
+
+                                    sendVerificationCode(phNumber);
+
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 pd.dismiss();
 
-                                Toast.makeText(getApplicationContext(), "Your Account Has Already Been Created, Please Login!", Toast.LENGTH_SHORT).show();
-
-
-                            } else {
-
-                                //redirect to sign up page
-
-                                sendVerificationCode(phNumber);
-
                             }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                        });
 
-                            Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            pd.dismiss();
-
-                        }
-                    });
+                    }
 
                 }
 
