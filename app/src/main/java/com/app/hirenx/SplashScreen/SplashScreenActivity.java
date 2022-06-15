@@ -48,9 +48,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -97,12 +94,14 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                         Intent moveToPartner = new Intent(SplashScreenActivity.this, ProfilePagePartnerActivity.class);
                         startActivity(moveToPartner);
+                        finish();
 
 
                     } else if (userType.equals("consumer")) {
 
                         Intent moveToConsumer = new Intent(SplashScreenActivity.this, HomePageClientActivity.class);
                         startActivity(moveToConsumer);
+                        finish();
 
                     }
 
