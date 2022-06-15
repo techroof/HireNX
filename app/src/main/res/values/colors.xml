@@ -23,5 +23,6 @@
     <color name="cardviewwhite">#E6E7FE</color>
     <color name="lightPurpleColor">#F4F4FF</color>
     <color name="donecolor">#45FF17</color>
+    <color name="donecolor2">#70E6E7FE</color>
 
 </resources>

@@ -34,11 +34,8 @@ public class PartnersListAdapter extends RecyclerView.Adapter<PartnersListAdapte
         this.bottomSheetClickListener = bottomSheetClickListener;
 
         firestore=FirebaseFirestore.getInstance();
-
         firebaseAuth=FirebaseAuth.getInstance();
-
         firebaseUser= firebaseAuth.getCurrentUser();
-
         id=firebaseUser.getPhoneNumber();
     }
 
@@ -58,14 +55,6 @@ public class PartnersListAdapter extends RecyclerView.Adapter<PartnersListAdapte
     private FirebaseAuth firebaseAuth;
 
     private FirebaseUser firebaseUser;
-
-
-
-
-
-
-
-
 
     @NonNull
     @Override
@@ -92,9 +81,6 @@ public class PartnersListAdapter extends RecyclerView.Adapter<PartnersListAdapte
                 .centerCrop()
                 .into(holder.circleImageView);
         holder.tvContactNumber.setText(partnersList.getPhoneNumber());
-
-
-
 
 
             holder.imgVisibleStatus.setImageDrawable(context.getResources().getDrawable(R.drawable.eye_off));

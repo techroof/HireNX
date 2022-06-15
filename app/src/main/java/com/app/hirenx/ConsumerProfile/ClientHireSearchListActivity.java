@@ -80,15 +80,10 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
         }
 
-
-
         /*Intent intent = getIntent();
         city= intent.getStringExtra("city");
         skill=intent.getStringExtra("skill");*/
         tvSkillsandCity.setText(skill+" "+"from"+" "+city+" ");
-
-
-
 
         PartnersSkillList();
 
@@ -374,7 +369,5 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
         Toast.makeText(getApplicationContext(), "Something Went Wrong!"+s, Toast.LENGTH_SHORT).show();
 
     }
-
-
 
 }
