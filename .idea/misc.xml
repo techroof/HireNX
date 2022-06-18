@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/HireNX/app/src/main/res/drawable/cardview.xml" value="0.1135" />
+        <entry key="..\:/HireNX/app/src/main/res/drawable/roundedbutton.xml" value="0.1135" />
+        <entry key="..\:/HireNX/app/src/main/res/drawable/roundedittextprofile.xml" value="0.1135" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_client_profile_setup.xml" value="0.20416666666666666" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_home_page_client.xml" value="0.18" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_otpactivity.xml" value="0.20416666666666666" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_partner_profile_setup.xml" value="0.22" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_profile_page_partner.xml" value="0.22" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/HireNX/app/src/main/res/layout/fragment_profile_client.xml" value="0.20416666666666666" />
         <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_client_hire_search_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_client_search_hire.xml" value="0.20416666666666666" />
         <entry key="..\:/Temp/braintree-integration-master/HireNX/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />

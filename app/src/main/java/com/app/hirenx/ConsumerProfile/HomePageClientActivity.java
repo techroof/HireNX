@@ -96,10 +96,10 @@ public class HomePageClientActivity extends AppCompatActivity {
         tvHeading.setText("Home");
         imgHome.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
         tvHome.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-        imgProfile.setColorFilter(getResources().getColor(R.color.black));
-        tvProfile.setTextColor(getResources().getColor(R.color.black));
-        imgMenu.setColorFilter(getResources().getColor(R.color.black));
-        tvMenu.setTextColor(getResources().getColor(R.color.black));
+        imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
+        tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
+        imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
+        tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
 
 
         imgHome.setOnClickListener(new View.OnClickListener() {
@@ -109,10 +109,10 @@ public class HomePageClientActivity extends AppCompatActivity {
                 tvHeading.setText("Home");
                 imgHome.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
                 tvHome.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgProfile.setColorFilter(getResources().getColor(R.color.black));
-                tvProfile.setTextColor(getResources().getColor(R.color.black));
-                imgMenu.setColorFilter(getResources().getColor(R.color.black));
-                tvMenu.setTextColor(getResources().getColor(R.color.black));
+                imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
+                imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
                 pager.setCurrentItem(0);
             }
         });
@@ -124,10 +124,10 @@ public class HomePageClientActivity extends AppCompatActivity {
                 tvHeading.setText("Profile");
                 imgProfile.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
                 tvProfile.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgHome.setColorFilter(getResources().getColor(R.color.black));
-                tvHome.setTextColor(getResources().getColor(R.color.black));
-                imgMenu.setColorFilter(getResources().getColor(R.color.black));
-                tvMenu.setTextColor(getResources().getColor(R.color.black));
+                imgHome.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvHome.setTextColor(getResources().getColor(R.color.profilecardview));
+                imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
                 pager.setCurrentItem(1);
             }
         });
@@ -139,10 +139,10 @@ public class HomePageClientActivity extends AppCompatActivity {
                 tvHeading.setText("Menu");
                 imgMenu.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
                 tvMenu.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgProfile.setColorFilter(getResources().getColor(R.color.black));
-                tvProfile.setTextColor(getResources().getColor(R.color.black));
-                imgHome.setColorFilter(getResources().getColor(R.color.black));
-                tvHome.setTextColor(getResources().getColor(R.color.black));
+                imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
+                imgHome.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvHome.setTextColor(getResources().getColor(R.color.profilecardview));
                 pager.setCurrentItem(2);
             }
         });

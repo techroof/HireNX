@@ -63,8 +63,8 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
         tvHeading.setText("Profile");
         imgProfile.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
         tvProfile.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-        imgMenu.setColorFilter(getResources().getColor(R.color.black));
-        tvMenu.setTextColor(getResources().getColor(R.color.black));
+        imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
+        tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
         pager.setCurrentItem(0);
 
         firestore=FirebaseFirestore.getInstance();
@@ -79,8 +79,8 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
                 tvHeading.setText("Profile");
                 imgProfile.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
                 tvProfile.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgMenu.setColorFilter(getResources().getColor(R.color.black));
-                tvMenu.setTextColor(getResources().getColor(R.color.black));
+                imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
                 pager.setCurrentItem(0);
             }
         });
@@ -92,8 +92,8 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
                 tvHeading.setText("Menu");
                 imgMenu.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
                 tvMenu.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgProfile.setColorFilter(getResources().getColor(R.color.black));
-                tvProfile.setTextColor(getResources().getColor(R.color.black));
+                imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
+                tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
                 pager.setCurrentItem(1);
             }
         });

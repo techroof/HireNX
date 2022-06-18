@@ -49,6 +49,7 @@
         android:background="@drawable/cardview"
         app:cardCornerRadius="30dp"
         app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/cardview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,9 +64,9 @@
             android:layout_height="30dp"
             android:src="@drawable/user"
             android:layerType="software"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/tv_profile"
-            app:layout_constraintEnd_toStartOf="@id/img_menu"
+            app:tint="@color/profilecardview"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -74,12 +75,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile"
-            android:textColor="@color/black"
+            android:textColor="@color/profilecardview"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@id/img_profile"
-            app:layout_constraintEnd_toStartOf="@id/tv_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/img_profile"
+            app:layout_constraintEnd_toEndOf="@id/img_profile"
+
             />
 
         <ImageView
@@ -88,9 +89,9 @@
             android:layout_height="30dp"
             android:layerType="software"
             android:src="@drawable/menu_2"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/tv_menu"
-            app:layout_constraintStart_toEndOf="@id/img_profile"
+            app:tint="@color/profilecardview"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -99,12 +100,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Menu"
-            android:textColor="@color/black"
+            android:textColor="@color/profilecardview"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/img_profile"
-            app:layout_constraintStart_toEndOf="@id/tv_profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/img_menu"
+            app:layout_constraintStart_toStartOf="@id/img_menu"
+            app:layout_constraintEnd_toEndOf="@id/img_menu"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

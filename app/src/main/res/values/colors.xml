@@ -12,6 +12,8 @@
     <color name="completioncircle"> #2DCC70</color>
     <color name="slidecolors"> #E6E7FE</color>
     <color name="textblack">#1F1F1F</color>
+    <color name="cardview">#111827</color>
+    <color name="profilecardview">#9CA3AF</color>
     <color name="headingtextviewcolor">#6769FA</color>
     <color name="roundedtextviewcolor">#2DCC70</color>
     <color name="divider">#E6E7FE</color>

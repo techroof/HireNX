@@ -27,7 +27,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.hirenx.ConsumerProfile.ClientProfileSetup2Activity;
 import com.app.hirenx.R;
+import com.developers.imagezipper.ImageZipper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -66,6 +68,7 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
     private Uri photoURI, pdfUri;
     private String checkImageupload, checkPdfUploadFront, checkPdfUploadBack, backPdf,phoneNumber;
     private FirebaseUser user;
+    private File imageZipperFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,31 +149,30 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (checkImageupload.equals("checked") && checkPdfUploadFront.equals("checked") && checkPdfUploadBack.equals("checked")) {
+                if(checkImageupload!=null&&checkPdfUploadFront!=null&&checkPdfUploadBack!=null){
 
-                    Intent movetoPartnerSetup2 = new Intent(PartnerProfileSetup2Activity.this, PartnerProfileSetup3Activity.class);
-                    movetoPartnerSetup2.putExtra("phoneNumber",phoneNumber);
-                    startActivity(movetoPartnerSetup2);
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                    Toast.makeText(getApplicationContext(), "Step 2 completed", Toast.LENGTH_LONG).show();
+                    if (checkImageupload.equals("checked") && checkPdfUploadFront.equals("checked") && checkPdfUploadBack.equals("checked")) {
 
-                }else{
+                        Intent movetoPartnerSetup2 = new Intent(PartnerProfileSetup2Activity.this, PartnerProfileSetup3Activity.class);
+                        movetoPartnerSetup2.putExtra("phoneNumber", phoneNumber);
+                        startActivity(movetoPartnerSetup2);
+                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        Toast.makeText(getApplicationContext(), "Step 2 completed", Toast.LENGTH_LONG).show();
 
+                    }
 
                 }
-                if (checkImageupload == null) {
+                else if (checkImageupload == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your image", Toast.LENGTH_LONG).show();
 
 
-                }
-                if (checkPdfUploadFront == null) {
+                }else if (checkPdfUploadFront == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your front pdf of id", Toast.LENGTH_LONG).show();
 
 
-                }
-                if (checkPdfUploadBack == null) {
+                } else if (checkPdfUploadBack == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your back pdf of id", Toast.LENGTH_LONG).show();
 
@@ -187,14 +189,23 @@ public class PartnerProfileSetup2Activity extends AppCompatActivity {
 
             File f = new File(mCurrentPhotoPath);
             //imgView.setImageURI(Uri.fromFile(f));
+            try {
+                imageZipperFile=new ImageZipper(PartnerProfileSetup2Activity.this)
+                        .setQuality(100)
+                        .setMaxWidth(720)
+                        .setMaxHeight(400)
+                        .compressToFile(f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             pd.show();
 
             Intent mediaintent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri contentUri = Uri.fromFile(f);
+            Uri contentUri = Uri.fromFile(imageZipperFile);
             mediaintent.setData(contentUri);
             this.sendBroadcast(mediaintent);
 
-            UploadImageTofirebase(f.getName(), contentUri);
+            UploadImageTofirebase(imageZipperFile.getName(), contentUri);
 
 
         } else if (requestCode == GALLERY && resultCode == RESULT_OK) {

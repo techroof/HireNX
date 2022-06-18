@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +35,10 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private CountryCodePicker countryCodePicker;
-    private String selectedCountryCode;
-    private TextView tvPhoneDesc;
     private String login;
     private FirebaseAuth mAuth;
     private String phNumber, verificationId;
-    private TextInputLayout edtNumberLogin;
+    private EditText edtNumberLogin;
     private Button btnOTP, btnSignUp;
     private ProgressDialog pd;
     private ImageView imgBack;
@@ -59,14 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         login = "login";
 
         mAuth = FirebaseAuth.getInstance();
-        countryCodePicker = findViewById(R.id.country_code_spinner);
-        tvPhoneDesc = findViewById(R.id.label_desc);
         btnOTP = findViewById(R.id.btn_request_otp);
         edtNumberLogin = findViewById(R.id.edt_phone_number_login);
         btnSignUp = findViewById(R.id.btn_move_towards_signup);
 
-        selectedCountryCode = countryCodePicker.getSelectedCountryCodeWithPlus();
-        tvPhoneDesc.setText("Enter phone number without adding " + selectedCountryCode);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,24 +80,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
-            @Override
-            public void onCountrySelected() {
-
-                selectedCountryCode = countryCodePicker.getSelectedCountryCodeWithPlus();
-
-                tvPhoneDesc.setText("Enter phone number without adding " + selectedCountryCode);
-            }
-        });
 
 
         btnOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                phNumber = selectedCountryCode + edtNumberLogin.getEditText().getText().toString();
+                phNumber = edtNumberLogin.getText().toString();
 
-                if (TextUtils.isEmpty(edtNumberLogin.getEditText().getText())){
+                if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
                     edtNumberLogin.setError("Enter Phone Number");
 
@@ -120,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                                 //redirect to home page
 
                                 sendVerificationCode(phNumber);
+
+
 
 
                             } else {
@@ -187,6 +174,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("verificationId", verificationId);
             intent.putExtra("authenticationType", "login");
             startActivity(intent);
+
         }
 
         @Override

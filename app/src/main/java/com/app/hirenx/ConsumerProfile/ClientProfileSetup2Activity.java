@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.app.hirenx.PartnerProfile.PartnerProfileSetup2Activity;
 import com.app.hirenx.PartnerProfile.PartnerProfileSetup3Activity;
 import com.app.hirenx.R;
+import com.developers.imagezipper.ImageZipper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,6 +45,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ClientProfileSetup2Activity extends AppCompatActivity {
 
     private CardView crdtakePhoto, crdFileFront, crdFileBack;
@@ -60,8 +62,9 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
     private String imgUrl;
     String mCurrentPhotoPath;
     private Uri photoURI, pdfUri;
-    private ImageView imgCameraSelfieClient,imgPdfFrontClient,imgPdfBackClient;
-    private String checkImageupload, checkPdfUploadFront, checkPdfUploadBack, backPdf,phoneNumber;
+    private ImageView imgCameraSelfieClient, imgPdfFrontClient, imgPdfBackClient;
+    private String checkImageupload, checkPdfUploadFront, checkPdfUploadBack, backPdf, phoneNumber;
+    private File imageZipperFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +73,15 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            phoneNumber=extras.getString("phoneNumber");
+            phoneNumber = extras.getString("phoneNumber");
 
-        }else{
+        } else {
 
-            phoneNumber=user.getPhoneNumber();
+            phoneNumber = user.getPhoneNumber();
         }
 
 
@@ -95,9 +98,9 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
         crdFileFront = findViewById(R.id.crdview_upload_client_document_front);
         crdFileBack = findViewById(R.id.crdview_upload_client_document_back);
 
-        imgCameraSelfieClient=findViewById(R.id.img_take_selfie_client);
-        imgPdfBackClient=findViewById(R.id.img_document_back_client);
-        imgPdfFrontClient=findViewById(R.id.img_document_front_client);
+        imgCameraSelfieClient = findViewById(R.id.img_take_selfie_client);
+        imgPdfBackClient = findViewById(R.id.img_document_back_client);
+        imgPdfFrontClient = findViewById(R.id.img_document_front_client);
 
         btnProceedstep3 = findViewById(R.id.btn_partner_proceed_step2);
 
@@ -148,28 +151,30 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (checkImageupload.equals("checked")
-                        && checkPdfUploadFront.equals("checked")
-                        && checkPdfUploadBack.equals("checked")) {
+                if(checkImageupload!=null&&checkPdfUploadFront!=null&&checkPdfUploadBack!=null){
 
-                    Intent movetoPartnerSetup2 = new Intent(ClientProfileSetup2Activity.this, ClientProfileCompletionActivity.class);
-                    startActivity(movetoPartnerSetup2);
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                    Toast.makeText(getApplicationContext(), "Step 2 completed", Toast.LENGTH_LONG).show();
+                    if (checkImageupload.equals("checked")
+                            && checkPdfUploadFront.equals("checked")
+                            && checkPdfUploadBack.equals("checked")) {
 
-                }else if (checkImageupload == null) {
+                        Intent movetoPartnerSetup2 = new Intent(ClientProfileSetup2Activity.this, ClientProfileCompletionActivity.class);
+                        startActivity(movetoPartnerSetup2);
+                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        Toast.makeText(getApplicationContext(), "Step 2 completed", Toast.LENGTH_LONG).show();
+
+                    }
+
+                } else if (checkImageupload == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your image", Toast.LENGTH_LONG).show();
 
 
-                }
-                if (checkPdfUploadFront == null) {
+                } else if (checkPdfUploadFront == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your front pdf of id", Toast.LENGTH_LONG).show();
 
 
-                }
-                if (checkPdfUploadBack == null) {
+                }else if (checkPdfUploadBack == null) {
 
                     Toast.makeText(getApplicationContext(), "Please upload your back pdf of id", Toast.LENGTH_LONG).show();
 
@@ -184,20 +189,34 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA && resultCode == RESULT_OK) {
 
-            File f = new File(mCurrentPhotoPath);
+
             //imgView.setImageURI(Uri.fromFile(f));
             pd.show();
+            File f = new File(mCurrentPhotoPath);
 
+            try {
+                 imageZipperFile=new ImageZipper(ClientProfileSetup2Activity.this)
+                        .setQuality(100)
+                        .setMaxWidth(720)
+                        .setMaxHeight(400)
+                        .compressToFile(f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //String filePath = SiliCompressor.with(this).compress(mCurrentPhotoPath, f);
+            //SiliCompressor.with(this).compress(FileUtils.getPath(this, Uri.parse(mCurrentPhotoPath)),new File(this.getCacheDir(),"temp"))
             Intent mediaintent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri contentUri = Uri.fromFile(f);
+            //Toast.makeText(getApplicationContext(), "f= "+f+" file path"+filePath, Toast.LENGTH_SHORT).show();
+
+            Uri contentUri = Uri.fromFile(imageZipperFile);
             mediaintent.setData(contentUri);
             this.sendBroadcast(mediaintent);
 
-            UploadImageTofirebase(f.getName(), contentUri);
+            UploadImageTofirebase(imageZipperFile.getName(), contentUri);
 
 
         } else if (requestCode == GALLERY && resultCode == RESULT_OK) {
-
 
             UploadPdfFile(data.getData());
 
@@ -266,7 +285,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                             AddPdfUrlBack(uri.toString());
 
-                        } else if(backPdf.equals("FrontFile")){
+                        } else if (backPdf.equals("FrontFile")) {
 
 
                             AddPdfUrl(uri.toString());
@@ -297,7 +316,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("userImage", downloadUri);
-        userProfileMap.put("stepStatus","2");
+        userProfileMap.put("stepStatus", "2");
 
         firestore.collection("users")
                 .document(phoneNumber)
@@ -321,12 +340,12 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -335,7 +354,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("pdfIdFront", downloadUri);
-        userProfileMap.put("stepStatus","2");
+        userProfileMap.put("stepStatus", "2");
 
         firestore.collection("users")
                 .document(phoneNumber)
@@ -358,12 +377,12 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
@@ -371,7 +390,7 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
         Map<String, Object> userProfileMap = new HashMap<>();
         userProfileMap.put("pdfIdBack", downloadUri);
-        userProfileMap.put("stepStatus","2");
+        userProfileMap.put("stepStatus", "2");
 
 
         firestore.collection("users")
@@ -397,12 +416,12 @@ public class ClientProfileSetup2Activity extends AppCompatActivity {
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 

@@ -366,8 +366,10 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     @Override
     public void onPaymentError(int i, String s) {
 
-        Toast.makeText(getApplicationContext(), "Something Went Wrong!"+s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Error"+s, Toast.LENGTH_SHORT).show();
 
     }
+
+
 
 }

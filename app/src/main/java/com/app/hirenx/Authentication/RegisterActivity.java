@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,13 +34,11 @@ import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private CountryCodePicker countryCodePicker;
-    private String selectedCountryCode;
     private TextView tvPhoneDesc;
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
     private String phNumber,verificationId,userType;
-    private TextInputLayout edtNumber;
+    private EditText edtNumber;
     private Button btnOTP,btnMovetoLogin;
     private ImageView imgMoveToRegistrationType;
     private ProgressDialog pd;
@@ -49,8 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        countryCodePicker=findViewById(R.id.country_code_spinner);
-        tvPhoneDesc=findViewById(R.id.label_desc);
         imgMoveToRegistrationType=findViewById(R.id.img_move_towards_registration_type);
         //firebase initialization
 
@@ -74,8 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
             // and get whatever type user account id is
         }
 
-        selectedCountryCode=countryCodePicker.getSelectedCountryCodeWithPlus();
-        tvPhoneDesc.setText("Enter phone number without adding "+ selectedCountryCode);
+
 
         btnMovetoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,21 +86,25 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                phNumber=edtNumber.getText().toString();
+
                 if (userType==null){
 
                     Toast.makeText(RegisterActivity.this, "Please go back and select registration type", Toast.LENGTH_LONG).show();
 
                 }else{
 
-                    phNumber=selectedCountryCode+edtNumber.getEditText().getText().toString();
 
-                    if (TextUtils.isEmpty(edtNumber.getEditText().getText())){
+                    if (TextUtils.isEmpty(edtNumber.getText())){
 
                         edtNumber.setError("Enter Phone Number");
+
+
 
                     }else{
 
                         pd.show();
+
 
                         final FirebaseFirestore db = FirebaseFirestore.getInstance();
                         final DocumentReference docRef = db.collection("users").document(phNumber);
@@ -154,16 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
-            @Override
-            public void onCountrySelected() {
 
-                selectedCountryCode=countryCodePicker.getSelectedCountryCodeWithPlus();
-
-                tvPhoneDesc.setText("Enter phone number without adding "+ selectedCountryCode);
-
-            }
-        });
     }
     //otp generator
     private void sendVerificationCode(String number) {
