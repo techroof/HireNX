@@ -29,7 +29,7 @@ public class MessageReceiver extends BroadcastReceiver {
 
                 case CommonStatusCodes
                         .SUCCESS:
-                    Intent messageIntent = extras.getParcelable(SmsRetriever.SMS_RETRIEVED_ACTION);
+                    Intent messageIntent = extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT);
                     smsBroadcastReceiverListener.onSuccess(messageIntent);
                     break;
                 case CommonStatusCodes.TIMEOUT:

@@ -130,7 +130,7 @@ public class OTPActivity extends AppCompatActivity  {
 
     private void autoOTPReceiver() {
 
-        SmsRetrieverClient client = SmsRetriever.getClient(this);
+        SmsRetrieverClient client = SmsRetriever.getClient(OTPActivity.this);
         client.startSmsUserConsent(null);
     }
 
@@ -148,6 +148,19 @@ public class OTPActivity extends AppCompatActivity  {
 
             }
         }
+    }
+
+    private void getOtpFromMessage(String message) {
+
+        Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
+        Matcher matcher = otpPattern.matcher(message);
+        if (matcher.find()){
+
+            pinView.setText(matcher.group(0));
+
+        }
+
+
     }
 
 
@@ -176,18 +189,7 @@ public class OTPActivity extends AppCompatActivity  {
     }
 
 
-    private void getOtpFromMessage(String message) {
 
-        Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
-        Matcher matcher = otpPattern.matcher(message);
-        if (matcher.find()){
-
-            pinView.setText(matcher.group(0));
-
-        }
-
-
-    }
 
     @Override
     protected void onStart() {
