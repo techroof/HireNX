@@ -16,10 +16,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.hirenx.ConsumerProfile.ClientSearchHireActivity;
 import com.app.hirenx.Interfaces.JsonPlaceHolderAPI;
 import com.app.hirenx.Models.City;
 import com.app.hirenx.Models.States;
 import com.app.hirenx.R;
+import com.app.hirenx.SearchDialog.SearchDialogs;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +52,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
     private List<String> statesnameList;
-    private List<States> statesList;
+    private List<String> statesISOList;
     private List<String> countryNameList;
     private List<String> cityNameList;
     private List<City> cityArrayList;
@@ -58,7 +63,9 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     private ProgressDialog pd;
     private FirebaseUser user;
-    private String phoneNumber, uId, id;
+    private String phoneNumber, uId, id,states,cityy;
+    private ArrayList<SearchDialogs> cityList;
+    ArrayList<SearchDialogs> statessList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,8 +190,20 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                new SimpleSearchDialogCompat(PartnerProfileSetupActivity.this, "Search...",
+                        "What are you looking for...?", null, statessList , new SearchResultListener<SearchDialogs>() {
+                    @Override
+                    public void onSelected(BaseSearchDialogCompat dialog, SearchDialogs item, int position) {
 
-                new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your State")
+                        state = item.getTitle();
+                        etState.setText(state);
+                        stateId = statesISOList.get(position);
+                        getCities(101, stateId);
+                        dialog.dismiss();
+                    }
+                }).show();
+
+/*                new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your State")
                         .setSingleChoiceItems(statesnameList.toArray(new String[statesnameList.size()]), 0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -209,7 +228,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
 
                         })
-                        .show();
+                        .show();*/
 
             }
 
@@ -227,7 +246,31 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                 } else {
 
-                    new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your City")
+
+                    new SimpleSearchDialogCompat(PartnerProfileSetupActivity.this, "Search...",
+                            "What are you looking for...?", null, cityList, new SearchResultListener<SearchDialogs>() {
+                        @Override
+                        public void onSelected(BaseSearchDialogCompat dialog, SearchDialogs item, int position) {
+
+                            city = item.getTitle();
+                            etCity.setText(city);
+                            dialog.dismiss();
+                        }
+                    }).show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    /*new AlertDialog.Builder(PartnerProfileSetupActivity.this).setTitle("Select Your City")
                             .setSingleChoiceItems(cityNameList.toArray(new String[cityNameList.size()]), 0, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -246,7 +289,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                                     city = cityNameList.get(selectedPosition);
                                 }
                             })
-                            .show();
+                            .show();*/
                 }
             }
 
@@ -420,7 +463,6 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
     public void AddCities(){
 
-
         Map<String, Object> partnerCityMap = new HashMap<>();
         partnerCityMap.put("cityName", city);
 
@@ -455,7 +497,8 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
         pd.show();
 
         statesnameList = new ArrayList<>();
-        statesList = new ArrayList<>();
+        statesISOList = new ArrayList<>();
+        statessList=new ArrayList<>();
 
         // Toast.makeText(getApplicationContext(), "Please wait while the states are getting", Toast.LENGTH_LONG).show();
 
@@ -489,9 +532,11 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                 for (States states1 : states) {
                     //names.add(countryStateCity.getName());
                     //countryStateCitieslist.add(countryStateCity);
-                    statesnameList.add(states1.getName());
+                    //statesnameList.add(states1.getName());
                     //countryStateCities.add(countryStateCity);
-                    statesList.add(states1);
+                    //statesList.add(states1);
+                    statessList.add(new SearchDialogs(states1.getName()));
+                    statesISOList.add(states1.getIso2());
                 }
                 // Toast.makeText(getApplicationContext(), "size"+states.size(), Toast.LENGTH_SHORT).show();
                 etState.setEnabled(true);
@@ -527,9 +572,11 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
         pd.show();
 
+        cityList = new ArrayList<>();
         // countryArraylist = new ArrayList<>();
         cityArrayList = new ArrayList<>();
         cityNameList = new ArrayList<>();
+
         //cityArrayList=new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -554,6 +601,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
 
                     cityNameList.add(cityy.getName());
+                    cityList.add(new SearchDialogs(cityy.getName()));
                     //content += "id:" + cities.getId() + "\n";
                     //content += "name:" + cityy.getName() + "\n";
                     //content += "state:" + states.getIso2() + "\n";

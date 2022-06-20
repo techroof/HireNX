@@ -62,7 +62,7 @@
         android:id="@+id/crdview_use"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cardviewwhite"
+        app:cardBackgroundColor="@color/lightPurpleColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
         android:layout_marginTop="50dp"

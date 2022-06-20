@@ -22,6 +22,7 @@ import com.app.hirenx.Models.States;
 import com.app.hirenx.PartnerProfile.PartnerProfileSetup2Activity;
 import com.app.hirenx.PartnerProfile.PartnerProfileSetupActivity;
 import com.app.hirenx.R;
+import com.app.hirenx.SearchDialog.SearchDialogs;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,7 +54,7 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private List<String> statesnameList;
-    private List<States> statesList;
+    private List<String> statesISOList;
     private List<String> countryNameList;
     private List<String> cityNameList;
     private List<City> cityArrayList;
@@ -60,7 +64,8 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
     private String[] genderList, maritalStatusList, documentTypeList;
     final Calendar myCalendar = Calendar.getInstance();
     private ProgressDialog pd;
-    private String uId, phoneNumber;
+    ArrayList<SearchDialogs> statessList;
+    private String uId, phoneNumber,statess,cityy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,34 +194,20 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                new SimpleSearchDialogCompat(ClientProfileSetupActivity.this, "Search...",
+                        "What are you looking for...?", null, statessList , new SearchResultListener<SearchDialogs>() {
+                    @Override
+                    public void onSelected(BaseSearchDialogCompat dialog, SearchDialogs item, int position) {
 
-                new AlertDialog.Builder(ClientProfileSetupActivity.this).setTitle("Select Your State")
-                        .setSingleChoiceItems(statesnameList.toArray(new String[statesnameList.size()]), 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                        state = item.getTitle();
+                        etState.setText(state);
+                        stateId = statesISOList.get(position);
 
-                            }
-                        })
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        getCities(101, stateId);
+                        dialog.dismiss();
+                    }
+                }).show();
 
-                            public void onClick(DialogInterface dialog, int whichButton) {
-
-                                dialog.dismiss();
-
-                                int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                                etState.setText(statesnameList.get(selectedPosition));
-                                state = statesnameList.get(selectedPosition);
-
-                                stateId = statesList.get(selectedPosition).getIso2();
-
-
-                                getCities(101, stateId);
-
-                            }
-
-
-                        })
-                        .show();
             }
 
         });
@@ -437,7 +428,8 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
         pd.show();
 
         statesnameList = new ArrayList<>();
-        statesList = new ArrayList<>();
+        statessList=new ArrayList<>();
+        statesISOList = new ArrayList<>();
 
         // Toast.makeText(getApplicationContext(), "Please wait while the states are getting", Toast.LENGTH_LONG).show();
 
@@ -471,9 +463,9 @@ public class ClientProfileSetupActivity extends AppCompatActivity {
                 for (States states1 : states) {
                     //names.add(countryStateCity.getName());
                     //countryStateCitieslist.add(countryStateCity);
-                    statesnameList.add(states1.getName());
+                    statessList.add(new SearchDialogs(states1.getName()));
                     //countryStateCities.add(countryStateCity);
-                    statesList.add(states1);
+                    statesISOList.add(states1.getIso2());
                 }
                 // Toast.makeText(getApplicationContext(), "size"+states.size(), Toast.LENGTH_SHORT).show();
                 etState.setEnabled(true);

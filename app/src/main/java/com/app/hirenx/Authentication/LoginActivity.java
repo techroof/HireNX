@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         edtNumberLogin = findViewById(R.id.edt_phone_number_login);
         btnSignUp = findViewById(R.id.btn_move_towards_signup);
 
+        edtNumberLogin.setText("+");
+
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phNumber = edtNumberLogin.getText().toString();
+                phNumber = "+"+edtNumberLogin.getText().toString();
 
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 

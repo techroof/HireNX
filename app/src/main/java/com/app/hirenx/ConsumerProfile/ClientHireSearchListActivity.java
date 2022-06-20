@@ -3,13 +3,18 @@ package com.app.hirenx.ConsumerProfile;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,40 +60,41 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
     private Boolean isBefore;
     private ImageView imgBackToSearch;
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_hire_search_list);
 
-        firestore=FirebaseFirestore.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-        uId=user.getPhoneNumber();
+        firestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        uId = user.getPhoneNumber();
 
-        rvPartnerList=findViewById(R.id.rv_partners_list);
-        tvSkillsandCity=findViewById(R.id.label_skill_and_city);
-        imgBackToSearch=findViewById(R.id.img_move_towards_search);
-        partnersListArrayList=new ArrayList<>();
-        pd=new ProgressDialog(ClientHireSearchListActivity.this);
+        rvPartnerList = findViewById(R.id.rv_partners_list);
+        tvSkillsandCity = findViewById(R.id.label_skill_and_city);
+        imgBackToSearch = findViewById(R.id.img_move_towards_search);
+        partnersListArrayList = new ArrayList<>();
+        pd = new ProgressDialog(ClientHireSearchListActivity.this);
         pd.setMessage("Loading Please Wait...");
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             city = extras.getString("city");
-            skill=extras.getString("skill");
+            skill = extras.getString("skill");
 
         }
 
         /*Intent intent = getIntent();
         city= intent.getStringExtra("city");
         skill=intent.getStringExtra("skill");*/
-        tvSkillsandCity.setText(skill+" "+"from"+" "+city+" ");
+        tvSkillsandCity.setText(skill + " " + "from" + " " + city + " ");
 
         PartnersSkillList();
 
         partnersListAdapter = new PartnersListAdapter(partnersListArrayList,
-                getApplicationContext(),this);
+                getApplicationContext(), this);
 
         imgBackToSearch.setOnClickListener(new View.OnClickListener() {
             @Override
