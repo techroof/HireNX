@@ -63,8 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage("Sending OTP...");
 
-        edtNumber.setText("+");
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -88,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phNumber="+"+edtNumber.getText().toString();
+                phNumber=edtNumber.getText().toString();
 
                 if (userType==null){
 

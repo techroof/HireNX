@@ -40,20 +40,12 @@ public class PartnersListAdapter extends RecyclerView.Adapter<PartnersListAdapte
     }
 
     private ArrayList<PartnersList> arraylistPartnersLists;
-
     private Context context;
-
     private OpenBottomSheetClickListener bottomSheetClickListener;
-
-
     private String status,expireDates,getExpireDates,todaysDate;
-
     private String id;
-
     private FirebaseFirestore firestore;
-
     private FirebaseAuth firebaseAuth;
-
     private FirebaseUser firebaseUser;
 
     @NonNull
