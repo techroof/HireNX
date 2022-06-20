@@ -301,13 +301,11 @@ public class ClientHireSearchListActivity extends AppCompatActivity implements O
 
                         if (isBefore == true) {
 
-                            Toast.makeText(getApplicationContext(), "Its before", Toast.LENGTH_SHORT).show();
 
                         } else if (isBefore == false) {
 
                             //Payment();
                             ChangeActivationStatusNonActivated();
-                            Toast.makeText(getApplicationContext(), "Its after", Toast.LENGTH_SHORT).show();
 
                         }
 

@@ -85,6 +85,7 @@ public class ClientSearchHireActivity extends AppCompatActivity {
                         city = item.getTitle();
                         etCityVillage.setText(city);
                         dialog.dismiss();
+
                     }
                 }).show();
                /* new AlertDialog.Builder(ClientSearchHireActivity.this).setTitle("Select Your City")
@@ -163,7 +164,8 @@ public class ClientSearchHireActivity extends AppCompatActivity {
             }
         });
 
-        getCities(101);
+        //getCities(101);
+        getAllCities();
         skillsList();
 
         btnHireSearch.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +188,40 @@ public class ClientSearchHireActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getAllCities() {
+
+        cityList = new ArrayList<>();
+        firestore.collection("cities").
+                get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                String partnerCity = document.getString("cityName");
+                                cityList.add(new SearchDialogs(partnerCity));
+
+                            }
+
+
+                        } else {
+
+                            Log.d("d", "Error getting documents: ", task.getException());
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
 
     private void skillsList() {

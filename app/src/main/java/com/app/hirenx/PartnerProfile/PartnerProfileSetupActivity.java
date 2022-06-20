@@ -403,13 +403,7 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            pd.dismiss();
-
-                            Intent movetoPartnerSetup2 = new Intent(PartnerProfileSetupActivity.this, PartnerProfileSetup2Activity.class);
-                            movetoPartnerSetup2.putExtra("phoneNumber", phoneNumber);
-                            startActivity(movetoPartnerSetup2);
-                            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                            Toast.makeText(getApplicationContext(), "Step 1 completed", Toast.LENGTH_SHORT).show();
+                            AddCities();
 
                         }
 
@@ -419,6 +413,36 @@ public class PartnerProfileSetupActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
                         Toast.makeText(getApplicationContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    public void AddCities(){
+
+
+        Map<String, Object> partnerCityMap = new HashMap<>();
+        partnerCityMap.put("cityName", city);
+
+        firestore.collection("cities")
+                .document(city)
+                .set(partnerCityMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        pd.dismiss();
+
+                        Intent movetoPartnerSetup2 = new Intent(PartnerProfileSetupActivity.this, PartnerProfileSetup2Activity.class);
+                        movetoPartnerSetup2.putExtra("phoneNumber", phoneNumber);
+                        startActivity(movetoPartnerSetup2);
+                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        Toast.makeText(getApplicationContext(), "Step 1 completed", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(PartnerProfileSetupActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
