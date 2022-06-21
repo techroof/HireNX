@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
                     edtNumberLogin.setError("Enter Phone Number");
+                    Toast.makeText(LoginActivity.this, "Please Enter Your Phone Number", Toast.LENGTH_SHORT).show();
 
                 }else{
 
