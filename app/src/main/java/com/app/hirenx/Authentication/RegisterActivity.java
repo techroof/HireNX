@@ -141,6 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                 }
+                sendVerificationCode(phNumber);
 
 
             }
@@ -183,6 +184,7 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
+
             pd.dismiss();
             // when we receive the OTP it
             // contains a unique id which

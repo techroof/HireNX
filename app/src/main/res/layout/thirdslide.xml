@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact the patner"
-        android:textSize="22sp"
+        android:textSize="28sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_margin="20dp"
@@ -46,16 +46,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         />
 
-
     <TextView
         android:id="@+id/label_third_slide_message"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="Lorem ipsum dolor sit amet,consectetur adipiscing elit. Ut sit amet ante vitae sapien iaculis lobortis. "
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_margin="20dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

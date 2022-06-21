@@ -13,17 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/round_arrow_back"
+        app:tint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
+        app:layout_constraintTop_toTopOf="@id/complete_text"
+        app:layout_constraintBottom_toBottomOf="@id/complete_text"/>
 
     <TextView
+        android:id="@+id/complete_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Complete Profile"
         android:textColor="@color/headingtextviewcolor"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -185,6 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes"
+                        android:textSize="14sp"
                         android:textColor="@color/black" />
 
 
@@ -199,6 +202,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No"
+                        android:textSize="14sp"
                         android:textColor="@color/black" />
 
                 </RadioGroup>

@@ -48,12 +48,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class OTPActivity extends AppCompatActivity  {
+public class OTPActivity extends AppCompatActivity {
 
     private ImageView imgMoveRegistration;
     private PinView pinView;
-    private String getcod, verificationId, enterCode, resendCodeVerificationId
-            ,uId,phoneNumber, authenticationType, userType, resentPhoneNumber, userTypeLogin,otps;
+    private String getcod, verificationId, enterCode, resendCodeVerificationId, uId, phoneNumber, authenticationType, userType, resentPhoneNumber, userTypeLogin, otps;
     private Button btnVerify;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
@@ -145,7 +144,6 @@ public class OTPActivity extends AppCompatActivity  {
                 String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
                 getOtpFromMessage(message);
 
-
             }
         }
     }
@@ -154,26 +152,28 @@ public class OTPActivity extends AppCompatActivity  {
 
         Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
         Matcher matcher = otpPattern.matcher(message);
-        if (matcher.find()){
+        if (matcher.find()) {
 
             pinView.setText(matcher.group(0));
 
         }
-
-
     }
 
 
-    private void registerBroadcastReceiver(){
+    private void registerBroadcastReceiver() {
 
-        messageReceiver=new MessageReceiver();
 
-        messageReceiver.smsBroadcastReceiverListener=new MessageReceiver.SmsBroadcastReceiverListener() {
+
+        messageReceiver = new MessageReceiver();
+
+        IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
+        registerReceiver(messageReceiver, intentFilter);
+
+        messageReceiver.smsBroadcastReceiverListener = new MessageReceiver.SmsBroadcastReceiverListener() {
             @Override
             public void onSuccess(Intent intent) {
 
-                 startActivityForResult(intent,REQ_USER_CONSENT);
-
+                startActivityForResult(intent, REQ_USER_CONSENT);
 
             }
 
@@ -183,12 +183,7 @@ public class OTPActivity extends AppCompatActivity  {
             }
         };
 
-        IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
-        registerReceiver(messageReceiver,intentFilter);
-
     }
-
-
 
 
     @Override
@@ -225,7 +220,7 @@ public class OTPActivity extends AppCompatActivity  {
                         if (task.isSuccessful()) {
 
                             AddStatus(userType);
-                              //finish();
+                            //finish();
                         } else {
                             // if the code is not correct then we are
                             // displaying an error message to the user.
@@ -283,36 +278,36 @@ public class OTPActivity extends AppCompatActivity  {
 
     private void AddStatus(String userType) {
 
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        uId=user.getPhoneNumber();
+        uId = user.getPhoneNumber();
         Map<String, Object> userTypeMap = new HashMap<>();
         userTypeMap.put("userType", userType);
 
-        if (authenticationType.equals("login")){
+        if (authenticationType.equals("login")) {
 
             firestore.collection("users")
                     .document(uId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
-                                userTypeLogin=task.getResult().get("userType").toString();
+                                userTypeLogin = task.getResult().get("userType").toString();
 
-                                if (userTypeLogin.equals("consumer")){
+                                if (userTypeLogin.equals("consumer")) {
 
-                                    Intent home=new Intent(OTPActivity.this,HomePageClientActivity.class);
+                                    Intent home = new Intent(OTPActivity.this, HomePageClientActivity.class);
                                     startActivity(home);
 
-                                }else if (userTypeLogin.equals("partner")){
+                                } else if (userTypeLogin.equals("partner")) {
 
-                                    Intent home=new Intent(OTPActivity.this,ProfilePagePartnerActivity.class);
+                                    Intent home = new Intent(OTPActivity.this, ProfilePagePartnerActivity.class);
                                     startActivity(home);
 
                                 }
 
-                            }else{
+                            } else {
 
                             }
 
@@ -325,8 +320,7 @@ public class OTPActivity extends AppCompatActivity  {
                     });
 
 
-
-        }else if (authenticationType.equals("register")){
+        } else if (authenticationType.equals("register")) {
 
             firestore.collection("users")
                     .document(uId)
@@ -338,12 +332,12 @@ public class OTPActivity extends AppCompatActivity  {
                             if (task.isSuccessful()) {
 
                                 Intent intent = new Intent(getApplicationContext(), RegistrationCompletionActivity.class);
-                                intent.putExtra("userType",userType);
+                                intent.putExtra("userType", userType);
                                 startActivity(intent);
                                 Toast.makeText(OTPActivity.this, "Your Account Has Been Created.", Toast.LENGTH_LONG).show();
                                 finish();
 
-                            }else{
+                            } else {
 
                             }
 

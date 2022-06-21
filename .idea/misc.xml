@@ -111,13 +111,14 @@
         <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/secondslide.xml" value="0.25" />
         <entry key="..\:/XAMPP/HireNX-master/app/src/main/res/layout/thirdslide.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/add.xml" value="0.28425925925925927" />
+        <entry key="app/src/main/res/drawable/check_circle.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/custom_background_search.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/done_verify.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/roundedittextprofile.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/roundedittextsearchclienthire.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/slidebackgrounds.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/layout/activity_client_hire_search_list.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/layout/activity_client_profile_completion.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/layout/activity_client_profile_completion.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_client_profile_setup.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_client_profile_setup2.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/activity_client_search_hire.xml" value="0.2833333333333333" />
@@ -125,21 +126,21 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.27783452502553624" />
         <entry key="app/src/main/res/layout/activity_home_page_client.xml" value="0.27783452502553624" />
         <entry key="app/src/main/res/layout/activity_intro_slider.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.27783452502553624" />
-        <entry key="app/src/main/res/layout/activity_login_otpactivity.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.16509063720703127" />
+        <entry key="app/src/main/res/layout/activity_login_otpactivity.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_otpactivity.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_partner_profile_setup.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_partner_profile_setup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_partner_profile_setup2.xml" value="0.34599728629579374" />
         <entry key="app/src/main/res/layout/activity_partner_profile_setup3.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/activity_profile_page_partner.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.15495300292968756" />
-        <entry key="app/src/main/res/layout/activity_registration_completion.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/layout/activity_registration_type.xml" value="0.27783452502553624" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.25611419677734387" />
+        <entry key="app/src/main/res/layout/activity_registration_completion.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_registration_type.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/custom_recyclerview_category_text.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/custom_recyclerview_menu.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/layout/custom_recyclerview_search_client.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/custom_recyclerview_search_client.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_recyclerview_skill_categories.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/firstslide.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2833333333333333" />

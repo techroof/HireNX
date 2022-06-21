@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="Wash Venuturupalle"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="100dp"

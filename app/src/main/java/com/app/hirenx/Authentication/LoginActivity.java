@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
                     edtNumberLogin.setError("Enter Phone Number");
-                    Toast.makeText(LoginActivity.this, "Please Enter Your Phone Number", Toast.LENGTH_SHORT).show();
 
                 }else{
 
@@ -104,8 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                                 //redirect to home page
 
                                 sendVerificationCode(phNumber);
-
-
 
 
                             } else {
@@ -141,15 +138,18 @@ public class LoginActivity extends AppCompatActivity {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(number)            // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(0L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // Activity (for callback binding)
                         .setCallbacks(mCallBack)           // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
+
     }
+
 
     // callback method is called on Phone auth provider.
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+
 
             // initializing our callbacks for on
             // verification callback method.
@@ -157,6 +157,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // below method is used when
         // OTP is sent from Firebase
+
+
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
@@ -167,14 +169,14 @@ public class LoginActivity extends AppCompatActivity {
             pd.dismiss();
 
             verificationId = s;
+
             Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
             intent.putExtra("phoneNumber", phNumber);
             intent.putExtra("verificationId", verificationId);
             intent.putExtra("authenticationType", "login");
-            Toast.makeText(LoginActivity.this, "moving", Toast.LENGTH_SHORT).show();
-            Toast.makeText(LoginActivity.this, "codesent", Toast.LENGTH_SHORT).show();
             startActivity(intent);
 
+            Toast.makeText(LoginActivity.this, "Code Sent", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -182,8 +184,6 @@ public class LoginActivity extends AppCompatActivity {
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
             //mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
-
-
 
 
         }

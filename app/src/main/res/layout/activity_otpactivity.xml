@@ -22,23 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="Verify Your phone"
+        android:text="Verify your phone number"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold"
+
         app:layout_constraintStart_toEndOf="@id/img_move_towards_registration"
         app:layout_constraintTop_toBottomOf="@id/img_move_towards_registration" />
-
-    <TextView
-        android:id="@+id/label_verify_desc_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="number"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/img_move_towards_registration"
-        app:layout_constraintTop_toBottomOf="@id/label_verify_desc" />
 
     <TextView
         android:id="@+id/label_verify_details"
@@ -51,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/img_move_towards_registration"
-        app:layout_constraintTop_toBottomOf="@id/label_verify_desc_2" />
+        app:layout_constraintTop_toBottomOf="@id/label_verify_desc" />
 
     <TextView
         android:id="@+id/label_phone_number"
@@ -93,7 +83,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/roundedbutton"
         android:text="Verify"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@id/pin_view"
         app:layout_constraintStart_toStartOf="@id/pin_view"

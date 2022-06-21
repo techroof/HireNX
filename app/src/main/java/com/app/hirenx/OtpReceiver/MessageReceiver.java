@@ -19,6 +19,7 @@ public class MessageReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         if(intent.getAction() == SmsRetriever.SMS_RETRIEVED_ACTION){
 
             Bundle extras = intent.getExtras();
