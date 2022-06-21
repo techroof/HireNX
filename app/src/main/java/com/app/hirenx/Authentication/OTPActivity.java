@@ -60,7 +60,7 @@ public class OTPActivity extends AppCompatActivity  {
     private TextView tvPhoneNumber;
     private TextView tvResendCode;
     private static final int REQ_USER_CONSENT = 200;
-    private MessageReceiver messageReceiver;
+    public MessageReceiver messageReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

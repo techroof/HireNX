@@ -80,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
         btnOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
                     edtNumberLogin.setError("Enter Phone Number");
+                    Intent intent=new Intent(LoginActivity.this, OTPActivity.class);
+                    startActivity(intent);
 
                 }else{
 
@@ -167,18 +167,22 @@ public class LoginActivity extends AppCompatActivity {
             // which we have already created.
             pd.dismiss();
 
-            mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
             verificationId = s;
-            Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
-            intent.putExtra("phoneNumber", phNumber);
-            intent.putExtra("verificationId", verificationId);
-            intent.putExtra("authenticationType", "login");
-            startActivity(intent);
+            Toast.makeText(LoginActivity.this, "codesent", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+            //mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
+
+            Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
+            intent.putExtra("phoneNumber", phNumber);
+            intent.putExtra("verificationId", verificationId);
+            intent.putExtra("authenticationType", "login");
+            Toast.makeText(LoginActivity.this, "moving", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
 
 
         }
@@ -190,4 +194,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Sorry Code Has Not Been Sent!" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
+
+
 }

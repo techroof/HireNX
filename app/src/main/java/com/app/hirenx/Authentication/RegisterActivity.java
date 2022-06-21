@@ -99,6 +99,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                         edtNumber.setError("Enter Phone Number");
 
+                        Intent intent=new Intent(RegisterActivity.this, OTPActivity.class);
+                        startActivity(intent);
 
 
                     }else{
@@ -118,12 +120,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "Your Account Has Already Been Created, Please Login!", Toast.LENGTH_SHORT).show();
 
+                                    sendVerificationCode(phNumber);
+
 
                                 } else {
 
                                     //redirect to sign up page
 
-                                    sendVerificationCode(phNumber);
 
                                 }
                             }
