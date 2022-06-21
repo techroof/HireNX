@@ -89,8 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
                     edtNumberLogin.setError("Enter Phone Number");
-                    Intent intent=new Intent(LoginActivity.this, OTPActivity.class);
-                    startActivity(intent);
 
                 }else{
 
@@ -168,7 +166,14 @@ public class LoginActivity extends AppCompatActivity {
             pd.dismiss();
 
             verificationId = s;
+            Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
+            intent.putExtra("phoneNumber", phNumber);
+            intent.putExtra("verificationId", verificationId);
+            intent.putExtra("authenticationType", "login");
+            Toast.makeText(LoginActivity.this, "moving", Toast.LENGTH_SHORT).show();
             Toast.makeText(LoginActivity.this, "codesent", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+
 
         }
 
@@ -177,12 +182,7 @@ public class LoginActivity extends AppCompatActivity {
 
             //mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
 
-            Intent intent = new Intent(LoginActivity.this, OTPActivity.class);
-            intent.putExtra("phoneNumber", phNumber);
-            intent.putExtra("verificationId", verificationId);
-            intent.putExtra("authenticationType", "login");
-            Toast.makeText(LoginActivity.this, "moving", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
+
 
 
         }
