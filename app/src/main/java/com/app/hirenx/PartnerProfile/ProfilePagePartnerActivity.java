@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.caverock.androidsvg.SVGImageView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,22 +33,19 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
     private FragmentManager fm;
     private LayoutPagerAdapter pagerAdapter;
     private ViewPager viewPager;
-    private ImageView imgProfile, imgMenu;
-    private TextView tvProfile, tvMenu, tvHeading;
+    private TextView tvHeading;
     private String uId,userType,status;
     private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
+    private BottomNavigationView btmNavBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page_partner);
 
-        imgProfile = findViewById(R.id.img_profile);
-        imgMenu = findViewById(R.id.img_menu);
-        tvProfile = findViewById(R.id.tv_profile);
-        tvMenu = findViewById(R.id.tv_menu);
+        btmNavBar=findViewById(R.id.btm_nav_bar);
         tvHeading = findViewById(R.id.label_profile);
         ViewPager pager = (ViewPager) findViewById(R.id.viewpager_profile);
 
@@ -61,42 +60,37 @@ public class ProfilePagePartnerActivity extends AppCompatActivity {
         pager.setAdapter(pagerAdapter);
 
         tvHeading.setText("Profile");
-        imgProfile.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
-        tvProfile.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-        imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
-        tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
-        pager.setCurrentItem(0);
+       pager.setCurrentItem(0);
 
         firestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
 
         GetUserStatus();
 
-        imgProfile.setOnClickListener(new View.OnClickListener() {
+        btmNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                tvHeading.setText("Profile");
-                imgProfile.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
-                tvProfile.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
-                tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
-                pager.setCurrentItem(0);
+                switch (menuItem.getItemId()) {
+
+                    case R.id.profile:
+
+                        tvHeading.setText("Profile");
+                        pager.setCurrentItem(0);
+                        break;
+
+                    case R.id.menu:
+
+                        tvHeading.setText("Menu");
+                        pager.setCurrentItem(1);
+                        break;
+
+                }
+                return true;
+
             }
         });
 
-        imgMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                tvHeading.setText("Menu");
-                imgMenu.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
-                tvMenu.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-                imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
-                tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
-                pager.setCurrentItem(1);
-            }
-        });
         //pager.setPageTransformer(true, new ZoomOutPageTransformer());
 
     }

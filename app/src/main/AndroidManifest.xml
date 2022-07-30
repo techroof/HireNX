@@ -17,7 +17,6 @@
         <activity
             android:name=".SplashScreen.SplashScreenActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +33,9 @@
             android:exported="false" />
         <activity
             android:name=".ConsumerProfile.ClientSearchHireActivity"
-            android:exported="true"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".ConsumerProfile.ClientProfileSetup2Activity"
             android:exported="false" />

@@ -6,9 +6,12 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -88,7 +91,7 @@ public class ClientSearchHireActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                new SimpleSearchDialogCompat(ClientSearchHireActivity.this, "Search...",
+                SimpleSearchDialogCompat dialog= new SimpleSearchDialogCompat(ClientSearchHireActivity.this, "Search...",
                         "What are you looking for...?", null, cityList, new SearchResultListener<SearchDialogs>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog, SearchDialogs item, int position) {
@@ -98,7 +101,12 @@ public class ClientSearchHireActivity extends AppCompatActivity {
                         dialog.dismiss();
 
                     }
-                }).show();
+                });
+
+                dialog.show();
+                dialog.getSearchBox().setTextColor(Color.BLACK);
+
+
                /* new AlertDialog.Builder(ClientSearchHireActivity.this).setTitle("Select Your City")
                         .setSingleChoiceItems(cityNameList.toArray(new String[cityNameList.size()]), 0, new DialogInterface.OnClickListener() {
                             @Override
@@ -130,7 +138,8 @@ public class ClientSearchHireActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                new SimpleSearchDialogCompat(ClientSearchHireActivity.this, "Search...",
+
+                SimpleSearchDialogCompat dialog = new SimpleSearchDialogCompat(ClientSearchHireActivity.this, "Search...",
                         "What are you looking for...?", null, skillList, new SearchResultListener<SearchDialogs>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog, SearchDialogs item, int position) {
@@ -139,15 +148,12 @@ public class ClientSearchHireActivity extends AppCompatActivity {
                         etSkills.setText(skill);
                         dialog.dismiss();
                     }
-                }).show();
-
-                imgBackToHome.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        onBackPressed();
-                    }
                 });
+
+                dialog.show();
+                dialog.getSearchBox().setTextColor(Color.BLACK);
+
+
 
                /* new AlertDialog.Builder(ClientSearchHireActivity.this).setTitle("Select Your City")
                         .setSingleChoiceItems(skillArraylist.toArray(new String[skillArraylist.size()]), 0, new DialogInterface.OnClickListener() {
@@ -172,6 +178,14 @@ public class ClientSearchHireActivity extends AppCompatActivity {
                         })
                         .show();*/
 
+            }
+        });
+
+        imgBackToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
             }
         });
 

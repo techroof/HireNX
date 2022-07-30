@@ -1,16 +1,47 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HireNX" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.HireNX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="fontFamily">@font/inter</item>
+
         <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/textColorLight</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="textColor2">@color/textColorLight2</item>
+        <item name="pinBgColor">@color/darkETBoxBgColor</item>
+        <item name="pinStrokeColor">@color/darkETBoxBgColor</item>
+
+        <item name="homeCardBackgroundColor">@color/homeCardBgColorDark</item>
+        <item name="btmSheetView">@color/white</item>
+        <item name="btmSheetBg">@color/btmSheetDark</item>
+        <item name="homeCardTextColorSelected">@color/textColorLight</item>
+        <item name="homeCardTextColorUnSelected">@color/textColorLight</item>
+        <item name="cardStrokeColor">@color/darkCardColor2</item>
+        <item name="cardBackgroundColor2">@color/darkCardColor2</item>
+        <item name="cardBackgroundColor">@color/darkCardColor2</item>
+        <item name="eTBoxBgColor">@color/darkETBoxBgColor</item>
+        <item name="eTBoxStrokeColor">@color/darkETBoxBgColor</item>
+
+        <item name="slide1">@drawable/dark_slide1</item>
+        <item name="slide2">@drawable/dark_slide2</item>
+        <item name="slide3">@drawable/dark_slide3</item>
+
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/accentColor</item>
+        <item name="colorOnPrimary">@color/buttoncolor</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+    </style>
+
 </resources>

@@ -56,6 +56,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     Intent moveToIntroSlider = new Intent(getApplicationContext(), IntroSliderActivity.class);
                     startActivity(moveToIntroSlider);
+                    finish();
 
                 } else {
 

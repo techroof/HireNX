@@ -39,6 +39,7 @@ public class RegistrationCompletionActivity extends AppCompatActivity {
                     movetoClientProfileSetup.putExtra("registerType",userType);
                     movetoClientProfileSetup.putExtra("phoneNumber",phoneNumber);
                     startActivity(movetoClientProfileSetup);
+                    finish();
 
                 }else if(userType.equals("partner")){
 
@@ -46,6 +47,8 @@ public class RegistrationCompletionActivity extends AppCompatActivity {
                     movetoPartnerProfileSetup.putExtra("registerType",userType);
                     movetoPartnerProfileSetup.putExtra("phoneNumber",phoneNumber);
                     startActivity(movetoPartnerProfileSetup);
+                    finish();
+
                 }
             }
         });

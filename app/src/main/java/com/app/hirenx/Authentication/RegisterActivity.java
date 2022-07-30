@@ -34,12 +34,12 @@ import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextView tvPhoneDesc;
+    private TextView loginText;
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
     private String phNumber,verificationId,userType;
-    private EditText edtNumber;
-    private Button btnOTP,btnMovetoLogin;
+    private EditText edtNumber,countryCodeEt;
+    private Button btnOTP;
     private ImageView imgMoveToRegistrationType;
     private ProgressDialog pd;
 
@@ -55,9 +55,10 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         edtNumber=findViewById(R.id.edt_phone_number);
+        countryCodeEt=findViewById(R.id.edt_country_code);
         btnOTP=findViewById(R.id.btn_request_otp_registration);
 
-        btnMovetoLogin=findViewById(R.id.btn_move_towards_login);
+        loginText=findViewById(R.id.label_account_desc);
 
         pd = new ProgressDialog(RegisterActivity.this);
         pd.setCanceledOnTouchOutside(false);
@@ -73,11 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        btnMovetoLogin.setOnClickListener(new View.OnClickListener() {
+        loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent moveToLogin=new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(moveToLogin);
+                finish();
             }
         });
 
@@ -86,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phNumber=edtNumber.getText().toString();
+                phNumber=countryCodeEt.getText().toString()+edtNumber.getText().toString();
 
                 if (userType==null){
 
@@ -198,6 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
             intent.putExtra("authenticationType","register");
             intent.putExtra("verificationId",verificationId);
             startActivity(intent);
+            finish();
         }
 
         @Override

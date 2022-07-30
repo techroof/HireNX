@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -40,13 +42,14 @@ public class HomePageClientActivity extends AppCompatActivity {
     private FragmentManager clientfm;
     private ClientLayoutPagerAdapter clientPagerAdapter;
     private ViewPager viewPager;
-    private ImageView imgHome, imgProfile, imgMenu;
-    private TextView tvHome, tvProfile, tvMenu, tvHeading;
+    private TextView tvHeading;
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private String uId, checkOnBoarding;
     private FirebaseUser user;
     private String status;
+    private BottomNavigationView btmNavBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,16 @@ public class HomePageClientActivity extends AppCompatActivity {
             finish();
         }*/
 
-        imgProfile = findViewById(R.id.img_client_profile);
+        /*imgProfile = findViewById(R.id.img_client_profile);
         imgMenu = findViewById(R.id.img_client_menu);
         imgHome = findViewById(R.id.img_client_home);
         tvProfile = findViewById(R.id.tv_client_profile);
         tvMenu = findViewById(R.id.tv_client_menu);
         tvHome = findViewById(R.id.tv_client_home);
+
+         */
         tvHeading = findViewById(R.id.label_home);
+        btmNavBar = findViewById(R.id.btm_nav_bar);
 
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -94,15 +100,39 @@ public class HomePageClientActivity extends AppCompatActivity {
 
         //
         tvHeading.setText("Home");
-        imgHome.setColorFilter(getResources().getColor(R.color.headingtextviewcolor));
-        tvHome.setTextColor(getResources().getColor(R.color.headingtextviewcolor));
-        imgProfile.setColorFilter(getResources().getColor(R.color.profilecardview));
-        tvProfile.setTextColor(getResources().getColor(R.color.profilecardview));
-        imgMenu.setColorFilter(getResources().getColor(R.color.profilecardview));
-        tvMenu.setTextColor(getResources().getColor(R.color.profilecardview));
+
+        btmNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+
+                    case R.id.home:
+
+                        tvHeading.setText("Home");
+                        pager.setCurrentItem(0);
+                        break;
+
+                    case R.id.profile:
+
+                        tvHeading.setText("Profile");
+                        pager.setCurrentItem(1);
+                        break;
+
+                    case R.id.menu:
+
+                        tvHeading.setText("Menu");
+                        pager.setCurrentItem(2);
+                        break;
+
+                }
+                return true;
+
+            }
+        });
 
 
-        imgHome.setOnClickListener(new View.OnClickListener() {
+        /*imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -147,6 +177,8 @@ public class HomePageClientActivity extends AppCompatActivity {
             }
         });
 
+
+         */
     }
 
 
@@ -156,38 +188,38 @@ public class HomePageClientActivity extends AppCompatActivity {
 
         firestore.collection("users").document(uId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if (task.isSuccessful()) {
+                        if (task.isSuccessful()) {
 
-                    status = task.getResult().getString("stepStatus");
+                            status = task.getResult().getString("stepStatus");
 
-                    if (status == null) {
+                            if (status == null) {
 
-                        Intent moveToConsumer1 = new Intent(HomePageClientActivity.this, ClientProfileSetupActivity.class);
-                        startActivity(moveToConsumer1);
-                        Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
+                                Intent moveToConsumer1 = new Intent(HomePageClientActivity.this, ClientProfileSetupActivity.class);
+                                startActivity(moveToConsumer1);
+                                Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
 
-                    } else if ( status.equals("1")) {
+                            } else if (status.equals("1")) {
 
-                        Intent moveToConsumer2 = new Intent(HomePageClientActivity.this, ClientProfileSetup2Activity.class);
-                        startActivity(moveToConsumer2);
-                        Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
+                                Intent moveToConsumer2 = new Intent(HomePageClientActivity.this, ClientProfileSetup2Activity.class);
+                                startActivity(moveToConsumer2);
+                                Toast.makeText(getApplicationContext(), "Please Complete Your Profile First", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        } else {
+
+                        }
+
 
                     }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-                } else {
-
-                }
-
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
+                    }
+                });
     }
 }

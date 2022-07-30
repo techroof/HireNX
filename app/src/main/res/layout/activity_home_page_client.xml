@@ -12,9 +12,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="HOME"
-        android:textColor="@color/black"
         android:layout_marginTop="30dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -24,20 +23,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_home"
-        >
-
-
+        app:layout_constraintBottom_toTopOf="@id/btm_nav_bar"
+        app:layout_constraintTop_toBottomOf="@+id/label_home">
     </androidx.viewpager.widget.ViewPager>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btm_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/menu_client"
+        android:background="@color/cardview"
+        app:itemIconTint="@drawable/btm_nav_selector"
+        app:itemTextColor="@drawable/btm_nav_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <!--
     <androidx.cardview.widget.CardView
         android:id="@+id/crdView_change"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginBottom="20dp"
         app:cardBackgroundColor="@color/cardview"
-        app:cardCornerRadius="30dp"
         app:cardElevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +72,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Home"
                 android:textColor="@color/profilecardview"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/img_client_home"
                 app:layout_constraintStart_toStartOf="@id/img_client_home"
                 app:layout_constraintEnd_toEndOf="@id/img_client_home"/>
@@ -93,7 +98,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Profile"
                 android:textColor="@color/profilecardview"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/img_client_profile"
                 app:layout_constraintStart_toStartOf="@id/img_client_profile"
                 app:layout_constraintEnd_toEndOf="@id/img_client_profile" />
@@ -120,17 +125,14 @@
                 android:layout_marginTop="5dp"
                 android:text="Menu"
                 android:textColor="@color/profilecardview"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/img_client_profile"
                 app:layout_constraintStart_toStartOf="@id/img_client_menu"
                 app:layout_constraintEnd_toEndOf="@id/img_client_menu" />
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
+    -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

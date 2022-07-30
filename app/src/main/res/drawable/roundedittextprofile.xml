@@ -3,7 +3,7 @@
     <item android:state_enabled="true" android:state_focused="true">
         <shape>
 
-            <solid android:color="#FFFFFF" />
+            <solid android:color="@android:color/transparent" />
             <stroke android:width="2dp" android:color="@color/buttoncolor" />
 
             <corners android:radius="5dp" />
@@ -15,9 +15,9 @@
 
         <shape>
 
-            <solid android:color="#FFFFFF" />
+            <solid android:color="?attr/eTBoxBgColor" />
 
-            <stroke android:width="2dp" android:color="@color/editTextBorderColor" />
+            <stroke android:width="2dp" android:color="?attr/eTBoxStrokeColor" />
 
             <corners android:radius="5dp" />
 

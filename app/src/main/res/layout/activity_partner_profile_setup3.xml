@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:padding="25dp"
     tools:context=".PartnerProfile.PartnerProfileSetup3Activity">
 
 
@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/round_arrow_back"
-        app:tint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/complete_text"
         app:layout_constraintBottom_toBottomOf="@id/complete_text"/>
@@ -24,8 +23,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Complete Profile"
-        android:textColor="@color/headingtextviewcolor"
-        android:textSize="24sp"
+        android:textColor="@color/accentColor"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,7 +114,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select the vehicle you have"
-                    android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -134,7 +132,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 wheeler"
-                    android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/checkbox_2_wheeler"
                     app:layout_constraintStart_toEndOf="@+id/checkbox_2_wheeler"
@@ -153,7 +150,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Car"
-                    android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/checkbox_2_car"
                     app:layout_constraintStart_toEndOf="@id/checkbox_2_car"
@@ -164,7 +160,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Can you drive"
-                    android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:text="Yes"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                        />
 
 
                     <RadioButton
@@ -203,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:text="No"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                         />
 
                 </RadioGroup>
 
@@ -213,7 +208,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Skills"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -237,8 +231,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/roundedbutton"
-                    android:text="SUBMIT"
-                    android:textSize="12sp"
+                    android:text="Complete profile setup"
+                    android:textSize="14sp"
                     app:backgroundTint="@null"
                     app:layout_constraintTop_toBottomOf="@id/recyclerView_categories" />
 

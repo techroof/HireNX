@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <item android:bottom="200dp">
+    <item>
 
         <shape  xmlns:android="http://schemas.android.com/apk/res/android">
 
-            <solid android:color="@color/lightPurpleColor"/>
+            <solid android:color="?attr/cardBackgroundColor"/>
             <corners android:bottomRightRadius="50dp"
                 android:bottomLeftRadius="50dp"/>
 

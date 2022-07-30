@@ -71,6 +71,8 @@ public class MenuClientFragment extends Fragment {
 
                 mAuth.signOut();
                 Intent moveToRegisterclient =new Intent(getContext(), RegistrationTypeActivity.class);
+                moveToRegisterclient.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                 startActivity(moveToRegisterclient);
             }
         });

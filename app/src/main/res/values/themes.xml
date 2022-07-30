@@ -1,11 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.HireNX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorAccent">@color/buttoncolor</item>
+        <item name="colorAccent">@color/accentColor</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/buttoncolor</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -19,11 +21,33 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/statusbarcolor</item>
 
         <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="homeCardTextColorSelected">@color/white</item>
+        <item name="homeCardTextColorUnSelected">@color/textColorDark</item>
+
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="textColor2">@color/textColorDark</item>
+        <item name="pinBgColor">@color/white</item>
+        <item name="pinStrokeColor">@color/card_stroke_color_dark</item>
+
+        <item name="homeCardBackgroundColor">@color/homeCardBgColorLight</item>
+        <item name="btmSheetView">@color/textColorDark</item>
+        <item name="btmSheetBg">@color/btmSheetWhite</item>
+        <item name="cardStrokeColor">@color/card_stroke_color_dark</item>
+        <item name="cardBackgroundColor">@color/lightCardColor</item>
+        <item name="cardBackgroundColor2">@color/white</item>
+        <item name="eTBoxBgColor">@color/lightETBoxBgColor</item>
+        <item name="eTBoxStrokeColor">@color/editTextBorderColor</item>
+        <item name="slide1">@drawable/slide_1</item>
+        <item name="slide2">@drawable/slide_2</item>
+        <item name="slide3">@drawable/slide_3</item>
+
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/buttoncolor</item>
+        <item name="colorAccent">@color/accentColor</item>
         <item name="colorOnPrimary">@color/buttoncolor</item>
+        <item name="android:textColorHint">@color/hintColor</item>
     </style>
 
        <!--custom bottom sheet-->

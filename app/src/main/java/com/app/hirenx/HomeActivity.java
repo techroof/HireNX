@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
         FirebaseUser user = firebaseAuth.getCurrentUser();
         btnSignOut=findViewById(R.id.signout);
 

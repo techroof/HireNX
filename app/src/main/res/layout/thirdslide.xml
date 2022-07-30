@@ -2,46 +2,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/slidebackgrounds">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdview_onboarding3"
+    <ImageView
+        android:id="@+id/img_bg"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:background="@drawable/slidebackgrounds"
+        android:layout_marginBottom="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/label_third_slide"
+        />
 
-        <ImageView
-            android:id="@+id/img_onboarding_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/onboarding3"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/img_onboarding_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="?attr/slide3"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/img_bg"/>
 
     <TextView
         android:id="@+id/label_third_slide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact the patner"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_margin="20dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@id/label_third_slide_message"
         app:layout_constraintLeft_toLeftOf="parent"
         />
@@ -51,9 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="Lorem ipsum dolor sit amet,consectetur adipiscing elit. Ut sit amet ante vitae sapien iaculis lobortis. "
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/black"
-        android:layout_margin="20dp"
+        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -78,6 +78,7 @@ public class IntroSliderActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }
             }
@@ -89,6 +90,7 @@ public class IntroSliderActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

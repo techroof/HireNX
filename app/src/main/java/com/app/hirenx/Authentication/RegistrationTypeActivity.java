@@ -2,6 +2,7 @@ package com.app.hirenx.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,82 +22,43 @@ import com.app.hirenx.R;
 
 public class RegistrationTypeActivity extends AppCompatActivity {
 
-    private CardView crdConsumer, crdPartner;
-    private Button btnRequestOTP,btnLogin;
+    private ConstraintLayout crdConsumer, crdPartner;
+    private Button btnRequestOTP;
     private String type="consumer";
-    private TextView tvConsumer,tvConsumer2,tvPartner,tvPartner2;
-    private ImageView imgConsumerAppInfo,imgPartnerAppInfo;
+    private TextView tvConsumer,tvConsumer2,tvPartner,tvPartner2,loginText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_type);
 
-        crdConsumer=findViewById(R.id.crdview_sign_up_as_consumer);
-        crdPartner=findViewById(R.id.crdview_sign_up_as_partner);
+        crdConsumer=findViewById(R.id.sign_up_as_consumer_cl);
+        crdPartner=findViewById(R.id.sign_up_as_partner_cl);
         btnRequestOTP=findViewById(R.id.btn_request_otp);
-        btnLogin=findViewById(R.id.btn_move_towards_login);
         tvConsumer=findViewById(R.id.label_consumer);
         tvConsumer2=findViewById(R.id.label_consumer2);
         tvPartner=findViewById(R.id.label_partner);
         tvPartner2=findViewById(R.id.label_partner2);
-        imgConsumerAppInfo=findViewById(R.id.img_app_info_consumer);
-        imgPartnerAppInfo=findViewById(R.id.img_app_info_partner);
+        loginText=findViewById(R.id.label_account_desc);
 
-        imgConsumerAppInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                new AlertDialog.Builder(RegistrationTypeActivity.this)
-                        .setTitle("info !")
-                        .setMessage("This will lead to register you as a consumer")
-
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                dialog.dismiss();
-                            }
-                        })
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-        });
-
-        imgPartnerAppInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                 new AlertDialog.Builder(RegistrationTypeActivity.this)
-                        .setTitle("info !")
-                        .setMessage("This will lead to register you as a partner")
-
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                dialog.dismiss();
-                            }
-                        })
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-
-        });
+        TypedValue selectedTextColor = new TypedValue();
+        getApplicationContext().getTheme().resolveAttribute(R.attr.homeCardTextColorSelected, selectedTextColor, true);
 
         if (type.equals("consumer")){
 
-            crdPartner.setCardBackgroundColor(getResources().getColor(R.color.cardviewwhite));
-            crdConsumer.setCardBackgroundColor(getResources().getColor(R.color.buttoncolor));
-            tvConsumer.setTextColor(getResources().getColor(R.color.cardviewwhite));
-            tvConsumer2.setTextColor(getResources().getColor(R.color.cardviewwhite));
-            tvPartner.setTextColor(getResources().getColor(R.color.black));
-            tvPartner2.setTextColor(getResources().getColor(R.color.black));
-            imgConsumerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.white));
-            imgPartnerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.black));
 
+            crdPartner.setBackgroundResource(R.drawable.cardview_bg);
+            crdConsumer.setBackgroundResource(R.drawable.cardview_bg_selected);
+
+            tvConsumer.setTextColor(getResources().getColor(R.color.white));
+            tvConsumer2.setTextColor(getResources().getColor(R.color.white));
+
+            TypedValue typedValue = new TypedValue();
+            getTheme().resolveAttribute(R.attr.homeCardTextColorUnSelected, typedValue, true);
+            int color = ContextCompat.getColor(getApplicationContext(), typedValue.resourceId);
+
+            tvPartner.setTextColor(color);
+            tvPartner2.setTextColor(color);
 
         }
 
@@ -104,16 +67,29 @@ public class RegistrationTypeActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 type="consumer";
-                crdPartner.setCardBackgroundColor(getResources().getColor(R.color.cardviewwhite));
-                crdConsumer.setCardBackgroundColor(getResources().getColor(R.color.buttoncolor));
-                tvConsumer.setTextColor(getResources().getColor(R.color.cardviewwhite));
-                tvConsumer2.setTextColor(getResources().getColor(R.color.cardviewwhite));
-                tvPartner.setTextColor(getResources().getColor(R.color.black));
-                tvPartner2.setTextColor(getResources().getColor(R.color.black));
-                imgConsumerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.white));
-                imgPartnerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.black));
+                crdPartner.setBackgroundResource(R.drawable.cardview_bg);
+                crdConsumer.setBackgroundResource(R.drawable.cardview_bg_selected);
+
+                tvConsumer.setTextColor(getResources().getColor(R.color.white));
+                tvConsumer2.setTextColor(getResources().getColor(R.color.white));
+
+                TypedValue typedValue = new TypedValue();
+                getTheme().resolveAttribute(R.attr.homeCardTextColorUnSelected, typedValue, true);
+                int color = ContextCompat.getColor(getApplicationContext(), typedValue.resourceId);
+
+                tvPartner.setTextColor(color);
+                tvPartner2.setTextColor(color);
 
 
+            }
+        });
+
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent login=new Intent(RegistrationTypeActivity.this,LoginActivity.class);
+                startActivity(login);
 
             }
         });
@@ -123,15 +99,18 @@ public class RegistrationTypeActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 type="partner";
-                crdConsumer.setCardBackgroundColor(getResources().getColor(R.color.cardviewwhite));
-                crdPartner.setCardBackgroundColor(getResources().getColor(R.color.buttoncolor));
-                tvPartner.setTextColor(getResources().getColor(R.color.cardviewwhite));
-                tvPartner2.setTextColor(getResources().getColor(R.color.cardviewwhite));
-                tvConsumer.setTextColor(getResources().getColor(R.color.black));
-                tvConsumer2.setTextColor(getResources().getColor(R.color.black));
-                imgPartnerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.white));
-                imgConsumerAppInfo.setColorFilter(ContextCompat.getColor(RegistrationTypeActivity.this, R.color.black));
+                crdConsumer.setBackgroundResource(R.drawable.cardview_bg);
+                crdPartner.setBackgroundResource(R.drawable.cardview_bg_selected);
 
+                tvPartner.setTextColor(getResources().getColor(R.color.white));
+                tvPartner2.setTextColor(getResources().getColor(R.color.white));
+
+                TypedValue typedValue = new TypedValue();
+                getTheme().resolveAttribute(R.attr.homeCardTextColorUnSelected, typedValue, true);
+                int color = ContextCompat.getColor(getApplicationContext(), typedValue.resourceId);
+
+                tvConsumer.setTextColor(color);
+                tvConsumer2.setTextColor(color);
 
             }
         });
@@ -165,15 +144,6 @@ public class RegistrationTypeActivity extends AppCompatActivity {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent moveToLogin=new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(moveToLogin);
-
-            }
-        });
 
     }
 }

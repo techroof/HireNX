@@ -162,8 +162,6 @@ public class OTPActivity extends AppCompatActivity {
 
     private void registerBroadcastReceiver() {
 
-
-
         messageReceiver = new MessageReceiver();
 
         IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
@@ -237,7 +235,7 @@ public class OTPActivity extends AppCompatActivity {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(firebaseAuth)
                         .setPhoneNumber(number)            // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(0L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // Activity (for callback binding)
                         .setCallbacks(mCallBack)           // OnVerificationStateChangedCallbacks
                         .build();
@@ -299,11 +297,13 @@ public class OTPActivity extends AppCompatActivity {
 
                                     Intent home = new Intent(OTPActivity.this, HomePageClientActivity.class);
                                     startActivity(home);
+                                    finish();
 
                                 } else if (userTypeLogin.equals("partner")) {
 
                                     Intent home = new Intent(OTPActivity.this, ProfilePagePartnerActivity.class);
                                     startActivity(home);
+                                    finish();
 
                                 }
 

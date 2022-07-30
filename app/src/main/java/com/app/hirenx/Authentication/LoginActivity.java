@@ -38,8 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     private String login;
     private FirebaseAuth mAuth;
     private String phNumber, verificationId;
-    private EditText edtNumberLogin;
-    private Button btnOTP, btnSignUp;
+    private EditText edtNumberLogin,countryCodeEt;
+    private Button btnOTP;
+    private TextView signUpText;
     private ProgressDialog pd;
     private ImageView imgBack;
 
@@ -59,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         btnOTP = findViewById(R.id.btn_request_otp);
         edtNumberLogin = findViewById(R.id.edt_phone_number_login);
-        btnSignUp = findViewById(R.id.btn_move_towards_signup);
-
+        signUpText = findViewById(R.id.label_account_desc);
+        countryCodeEt=findViewById(R.id.edt_country_code_login);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +71,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        signUpText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent moveToRegister = new Intent(getApplicationContext(), RegistrationTypeActivity.class);
+                moveToRegister.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(moveToRegister);
+                finish();
             }
         });
 
@@ -84,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phNumber = edtNumberLogin.getText().toString();
+                phNumber = countryCodeEt.getText().toString()+edtNumberLogin.getText().toString();
 
                 if (TextUtils.isEmpty(edtNumberLogin.getText())){
 
@@ -175,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("verificationId", verificationId);
             intent.putExtra("authenticationType", "login");
             startActivity(intent);
+            finish();
 
             Toast.makeText(LoginActivity.this, "Code Sent", Toast.LENGTH_SHORT).show();
 
